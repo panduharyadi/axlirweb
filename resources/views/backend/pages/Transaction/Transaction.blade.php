@@ -22,11 +22,17 @@
                     <td>{{ $transaction->cust_name }}</td>
                     <td>{{ $transaction->product_name }}</td>
                     <td>{{ $transaction->size }}</td>
-                    <td>{{ $transaction->price }}</td>
+                    <td>@currency($transaction->price)</td>
                     <td>{{ $transaction->qty }}</td>
-                    <td>{{ $transaction->total }}</td>
+                    <td>@currency($transaction->total)</td>
                     <td>
-                        <span class="badge bg-warning text-white">{{ $transaction->status }}</span>
+                        @if ($transaction->status == "waiting")
+                            <a href="{{ route('admin.confirm.transaction.edit', $transaction->id) }}" class="btn btn-warning">waiting</a>
+                        @elseif($transaction->status == "rejected")
+                            <a href="{{ route('admin.confirm.transaction.edit', $transaction->id) }}" class="btn btn-danger">Rejected</a>
+                        @else
+                            <a href="{{ route('admin.confirm.transaction.edit', $transaction->id) }}" class="btn btn-success">Accept</a>
+                        @endif
                     </td>
                 </tr>
             @endforeach

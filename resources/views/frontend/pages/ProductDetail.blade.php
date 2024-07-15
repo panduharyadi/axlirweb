@@ -34,61 +34,17 @@
                                         </div>
                                         <div class="col-4">
                                             <a href="#">
-                                                <img class="card-img img-fluid" src="{{ asset('frontend/img/product/produk1.0.jpg') }}" alt="Product Image 2">
+                                                <img class="card-img img-fluid" src="{{ asset('frontend/img/product/produk2.jpg') }}" alt="Product Image 2">
                                             </a>
                                         </div>
                                         <div class="col-4">
                                             <a href="#">
-                                                <img class="card-img img-fluid" src="{{ asset('frontend/img/product/produk1.0.jpg') }}" alt="Product Image 3">
+                                                <img class="card-img img-fluid" src="{{ asset('frontend/img/product/produk3.jpg') }}" alt="Product Image 3">
                                             </a>
                                         </div>
                                     </div>
                                 </div>
                                 <!--/.First slide-->
-
-                                <!--Second slide-->
-                                <div class="carousel-item">
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <a href="#">
-                                                <img class="card-img img-fluid" src="{{ asset('frontend/img/product/produk1.0.jpg') }}" alt="Product Image 4">
-                                            </a>
-                                        </div>
-                                        <div class="col-4">
-                                            <a href="#">
-                                                <img class="card-img img-fluid" src="{{ asset('frontend/img/product/produk1.0.jpg') }}" alt="Product Image 5">
-                                            </a>
-                                        </div>
-                                        <div class="col-4">
-                                            <a href="#">
-                                                <img class="card-img img-fluid" src="{{ asset('frontend/img/product/produk1.0.jpg') }}" alt="Product Image 6">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--/.Second slide-->
-
-                                <!--Third slide-->
-                                <div class="carousel-item">
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <a href="#">
-                                                <img class="card-img img-fluid" src="{{ asset('frontend/img/product/produk1.0.jpg') }}" alt="Product Image 7">
-                                            </a>
-                                        </div>
-                                        <div class="col-4">
-                                            <a href="#">
-                                                <img class="card-img img-fluid" src="{{ asset('frontend/img/product/produk1.0.jpg') }}" alt="Product Image 8">
-                                            </a>
-                                        </div>
-                                        <div class="col-4">
-                                            <a href="#">
-                                                <img class="card-img img-fluid" src="{{ asset('frontend/img/product/produk1.0.jpg') }}" alt="Product Image 9">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--/.Third slide-->
                             </div>
                             <!--End Slides-->
                         </div>
@@ -122,7 +78,7 @@
                                     <h6>Brand:</h6>
                                 </li>
                                 <li class="list-inline-item">
-                                    <p class="text-muted"><strong>Easy Wear</strong></p>
+                                    <p class="text-muted"><strong>Axlir Parfume</strong></p>
                                 </li>
                             </ul>
 
@@ -132,10 +88,10 @@
                             .</p>
                             <ul class="list-inline">
                                 <li class="list-inline-item">
-                                    <h6>Avaliable Color :</h6>
+                                    <h6>Avaliable Size :</h6>
                                 </li>
                                 <li class="list-inline-item">
-                                    <p class="text-muted"><strong>White / Black</strong></p>
+                                    <p class="text-muted"><strong>50ml / 30ml</strong></p>
                                 </li>
                             </ul>
 
@@ -153,14 +109,6 @@
                             <form action="" method="GET">
                                 <input type="hidden" name="product-title" value="Activewear">
                                 <div class="row">
-                                    <div class="col-auto">
-                                        <ul class="list-inline pb-3">
-                                            <li class="list-inline-item">Size :
-                                                <input type="hidden" name="product-size" id="product-size" value="S">
-                                            </li>
-                                            <li class="list-inline-item"><span class="btn btn-success btn-size">{{ $products->size }}</span></li>
-                                        </ul>
-                                    </div>
                                 </div>
                                 <div class="row pb-3">
                                     <div class="col d-grid">
@@ -649,67 +597,76 @@
         </div>
     </section>
     <!-- End Article -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalCheckout" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('admin.transaction.store') }}" method="post">
+                    @csrf
+                    <div class="">
+                        <div class="row">
+                          <div class="col">
+                            <input type="hidden" class="form-control" name="idProduct" value="{{ $products->id }}">
+                            <div class="mb-3">
+                                <label for="custName" class="form-label">Your Name</label>
+                                <input type="text" class="form-control" id="custName" name="custName">
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="mb-3">
+                                <label for="noHp" class="form-label">Number Phone</label>
+                                <input type="text" class="form-control" id="noHp" name="noHp">
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+
+                    <select class="form-select mb-3" aria-label="Default select example" id="provinsi" name="provinsi">
+                        <option selected disabled>Pilih Provinsi</option>
+                        <option value=""></option> 
+                    </select>
+
+                    <select class="form-select mb-3" aria-label="Default select example" id="kota" name="kota">
+                        <option selected disabled>Pilih Kota</option>
+                        <option value=""></option> 
+                    </select>
+
+                    <select class="form-select mb-3" aria-label="Default select example" id="kecamatan" name="kecamatan">
+                        <option selected disabled>Pilih Kecamatan</option>
+                        <option value=""></option> 
+                    </select>
+
+                    <select class="form-select mb-3" aria-label="Default select example" id="kelurahan" name="kelurahan">
+                        <option selected disabled>Pilih Kelurahan</option>
+                        <option value=""></option> 
+                    </select>
+    
+                    <div class="form-floating">
+                        <textarea class="form-control" placeholder="Berikan alamat lengkap seperti : No rumah, nama jalan, kode pos dll." id="address" name="detailAlamat"></textarea>
+                        <label for="address"></label>
+                    </div>
+
+                    <div class="mb-3">
+                      <input type="hidden" value="@currency($products->price)" name="priceProduct">
+                      <label for="qty" class="form-label">QTY</label>
+                      <input type="number" class="form-control" id="qty" name="qty">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+    </div>
 @endsection
 
-<!-- Modal -->
-<div class="modal fade" id="modalCheckout" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <form action="{{ route('admin.transaction.store') }}" method="post">
-                @csrf
-                <div class="">
-                    <div class="row">
-                      <div class="col">
-                        <input type="hidden" class="form-control" name="idProduct" value="{{ $products->id }}">
-                        <div class="mb-3">
-                            <label for="custName" class="form-label">Your Name</label>
-                            <input type="text" class="form-control" id="custName" name="custName">
-                        </div>
-                      </div>
-                      <div class="col">
-                        <div class="mb-3">
-                            <label for="noHp" class="form-label">Number Phone</label>
-                            <input type="text" class="form-control" id="noHp" name="noHp">
-                        </div>
-                      </div>
-                    </div>
-                </div>
-                
-                {{-- choose adres --}}
-                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                    <option disabled selected >Select Province</option>
-                    @foreach ($provinces as $province)
-                        <option value="{{ $province->id }}">{{ $province->province_name }}</option> 
-                    @endforeach
-                </select>
+    
 
-                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                    <option disabled selected >Select City</option>
-                    @foreach ($citys as $city)
-                        <option value="{{ $city->id }}">{{ $city->kota_name }}</option> 
-                    @endforeach
-                </select>
-
-                <div class="form-floating">
-                    <textarea class="form-control" placeholder="Leave a comment here" id="address" name="alamat"></textarea>
-                    <label for="address">Address</label>
-                </div>
-                <div class="mb-3">
-                  <input type="hidden" value="@currency($products->price)" name="priceProduct">
-                  <label for="qty" class="form-label">QTY</label>
-                  <input type="number" class="form-control" id="qty" name="qty">
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>

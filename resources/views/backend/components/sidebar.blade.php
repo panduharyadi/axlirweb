@@ -57,7 +57,7 @@
             </a>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link " href="*" aria-expanded="false">
+            <a class="sidebar-link {{ request()->routeIs('admin.user.list') ? 'active' : '' }}" href="{{ route('admin.user.list') }}" aria-expanded="false">
               <span>
                 <i class="ti ti-user-dollar"></i>
               </span>
@@ -70,22 +70,6 @@
                 <i class="ti ti-news"></i>
               </span>
               <span class="hide-menu">Create Blog</span>
-            </a>
-          </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link {{ request()->routeIs('admin.provinces') ? 'active' : '' }}" href="{{ route('admin.provinces') }}" aria-expanded="false">
-              <span>
-                <i class="ti ti-news"></i>
-              </span>
-              <span class="hide-menu">Provinces</span>
-            </a>
-          </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link {{ request()->routeIs('admin.cityes') ? 'active' : '' }}" href="{{ route('admin.cityes') }}" aria-expanded="false">
-              <span>
-                <i class="ti ti-news"></i>
-              </span>
-              <span class="hide-menu">Citys</span>
             </a>
           </li>
         </ul>

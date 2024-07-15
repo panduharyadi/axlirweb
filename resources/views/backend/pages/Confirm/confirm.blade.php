@@ -17,12 +17,18 @@
         <tbody>
             @foreach ($confirmTransaction as $confirm)
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ $confirm->cust_name }}</td>
+                    <td>{{ $confirm->product_name }}</td>
+                    <td>{{ $confirm->qty }}</td>
+                    <td>@currency($transaction->total)</td>
                     <td>
-                        <span class="badge bg-warning text-white"></span>
+                        @if ($confirm->status == "waiting")
+                            <a href="{{ route('admin.confirm.transaction.edit', $confirm->id) }}" class="btn btn-warning">waiting</a>
+                        @elseif($confirm->status == "rejected")
+                            <a href="{{ route('admin.confirm.transaction.edit', $confirm->id) }}" class="btn btn-danger">Rejected</a>
+                        @else
+                            <a href="{{ route('admin.confirm.transaction.edit', $confirm->id) }}" class="btn btn-success">Accept</a>
+                        @endif
                     </td>
                 </tr>
             @endforeach

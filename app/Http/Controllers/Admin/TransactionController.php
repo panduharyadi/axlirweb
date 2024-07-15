@@ -28,7 +28,10 @@ class TransactionController extends Controller
      */
     public function confirmTransaction()
     {
-        return view('backend.pages.Confirm.confirm');
+        $confirmTransaction = Transaction::selectRaw('transactions.*, products.product_name')
+            ->join('products', 'products.id', '=', 'transactions.id_product')
+            ->get();
+        return view('backend.pages.Confirm.confirm', compact('confirmTransaction'));
     }
 
     /**
@@ -54,14 +57,22 @@ class TransactionController extends Controller
 
         $total = $price * $qty;
 
+        $provinsi = $request->provinsi;
+        $kota = $request->kota;
+        $kecamatan = $request->kecamatan;
+        $kelurahan = $request->kelurahan;
+
+        $alamat = $alamat = $provinsi . ', ' . $kota . ', ' . $kecamatan . ', ' . $kelurahan;
+
         $transactions = Transaction::create([
             'id_product' => $request->idProduct,
             'cust_name'  => $request->custName,
             'noHp'       => $request->noHp,
-            'alamat'     => $request->alamat,
+            'alamat'     => $alamat,
+            'alamat_detail' => $request->detailAlamat,
             'qty'        => $qty,
             'total'      => $total,
-            'status'     => 'unpaid'
+            'status'     => 'waiting'
         ]);
 
         return redirect()->back();
@@ -80,7 +91,8 @@ class TransactionController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $confirms = Transaction::findOrFail($id);
+        return view('backend.pages.confirm.edit', compact('confirms'));
     }
 
     /**
@@ -88,7 +100,33 @@ class TransactionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $confirms = Transaction::findOrFail($id);
+
+        if(isset($_POST['btnaccept'])) {
+           $confirms->update([
+             'cust_name' => $request->custName,
+             'noHp' => $request->noHp,
+             'alamat' => $request->alamat,
+             'alamat_detail' => $request->detailAlamat,
+             'qty'  => $request->qty,
+             'status' => 'Accept',
+             'total'  => $request->total
+           ]);
+
+           return redirect()->route('admin.confirm.transaction')->with('success', 'Status Updated');
+        } else {
+            $confirms->update([
+                'cust_name' => $request->custName,
+                'noHp' => $request->noHp,
+                'alamat' => $request->alamat,
+                'alamat_detail' => $request->detailAlamat,
+                'qty'  => $request->qty,
+                'status' => 'Reject',
+                'total'  => $request->total
+              ]);
+   
+              return redirect()->route('admin.confirm.transaction')->with('success', 'Status Updated');   
+        }
     }
 
     /**
@@ -97,5 +135,13 @@ class TransactionController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function listUser()
+    {
+        $users = Transaction::selectRaw('transactions.*, products.product_name')
+            ->join('products', 'products.id', '=', 'transactions.id_product')
+            ->get();
+        return view('backend.pages.User.List', compact('users'));
     }
 }

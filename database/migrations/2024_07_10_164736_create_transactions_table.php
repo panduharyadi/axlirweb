@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('cust_name');
             $table->string('noHp');
             $table->text('alamat');
+            $table->text('alamat_detail');
             $table->integer('qty');
             $table->string('status')->default('waiting');
             $table->integer('total');

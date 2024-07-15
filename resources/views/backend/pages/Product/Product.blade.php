@@ -16,6 +16,7 @@
                 <th>Size</th>
                 <th>Stock</th>
                 <th>Price</th>
+                <th>Tanggal</th>
                 <th>Action</th>
             </tr>   
         </thead>
@@ -30,6 +31,7 @@
                     <td>{{ $product->size }}</td>
                     <td>{{ $product->stock }}</td>
                     <td>@currency($product->price)</td>
+                    <td>{{ $product->created_at }}</td>
                     <td>
                         <a href="{{ route('admin.product.edit', $product->id) }}" class="btn btn-warning">Edit</a> |
                         <form action="{{ route('admin.product.delete', $product->id) }}" method="post">

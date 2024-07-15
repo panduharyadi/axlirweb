@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Provinsi;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -13,8 +12,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        $provinces = Provinsi::all();
-        return view('backend.pages.Product.Product', compact('products', 'provinces'));
+        return view('backend.pages.Product.Product', compact('products'));
     }
 
     public function create()
@@ -28,13 +26,16 @@ class ProductController extends Controller
         $filename = sprintf('%s_%s.%s', date('Y-m-d'), md5(microtime(true)), $file->extension());
         $image_path = $file->move('storage/product', $filename);
 
+        // carbonara
+        
+
         Product::create([
             'image' => $image_path,
             'product_name' => $request->productName,
             'description' => $request->description,
             'size' => $request->size,
             'stock' => $request->stock,
-            'price' => $request->price
+            'price' => $request->price,
         ]);
 
         return redirect()->route('admin.product')->with('success', 'Product Created');

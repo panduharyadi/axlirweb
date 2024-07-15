@@ -70,20 +70,14 @@ Route::middleware(['auth', 'admin'])->group(function () {
     // Transaction
     Route::controller(TransactionController::class)->group(function () {
         Route::get('admin/transaction', 'index')->name('admin.transaction');
-        // Route::post('admin/transaction/store', 'store')->name('admin.transaction.store');
+
+        // route confirm transaction
         Route::get('admin/confirm/transaction', 'confirmTransaction')->name('admin.confirm.transaction');
+        Route::get('admin/confirm/transaction/edit/{id}', 'edit')->name('admin.confirm.transaction.edit');
+        Route::put('{id}/admin/comfirm/update', 'update')->name('admin.confirm.transaction.update');
+
+        // route user track
+        Route::get('admin/user/track', 'listUser')->name('admin.user.list');
     });
 
-    // Region
-    Route::controller(ProvinsiController::class)->group(function () {
-        Route::get('admin/provinces', 'index')->name('admin.provinces');
-        Route::get('admin/province/create', 'create')->name('admin.province.create');
-        Route::post('admin/province/store', 'store')->name('admin.province.store');
-    });
-
-    Route::controller(KotaController::class)->group(function () {
-        Route::get('admin/cityes', 'index')->name('admin.cityes');
-        Route::get('admin/city/create', 'create')->name('admin.city.create');
-        Route::post('admin/city/store', 'store')->name('admin.city.store');
-    });
 });
