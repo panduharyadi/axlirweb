@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Provinsi;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\ProductFile;
 use Illuminate\Support\Facades\Http;
 
 class ProductController extends Controller
@@ -26,6 +27,10 @@ class ProductController extends Controller
         //     $citys[$provinceId] = $cityData;
         // }
 
-        return view('frontend.pages.ProductDetail', compact('products', 'provinces'));
+        $productFile = ProductFile::select('*')
+            ->where('product_id', $id)
+            ->get();
+
+        return view('frontend.pages.ProductDetail', compact(['products', 'provinces', 'productFile']));
     }
 }

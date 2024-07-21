@@ -4,6 +4,9 @@
     <script src="{{ asset('frontend/js/templatemo.js') }}"></script>
     <script src="{{ asset('frontend/js/custom.js') }}"></script>
 
+    {{-- lightbox --}}
+    <script src="{{ asset('frontend/jslightbox.js') }}"></script>
+
     {{-- bootstrap --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
@@ -12,6 +15,14 @@
 
      {{-- slider js --}}
 <script>
+        $(document).ready(function() {
+            const productDetail = $('#product-detail');
+            
+            $('#video').on('click', function() {
+                console.log('ok')
+            });
+        });
+
         $('#carousel-related-product').slick({
             infinite: true,
             arrows: false,
@@ -110,4 +121,20 @@
                 document.getElementById('kelurahan').innerHTML = tampung;
             });
     })
+</script>
+
+<script>
+    document.getElementById("video").contentWindow.document.body.onclick = 
+    function (e) {
+        const currentUrl = document.getElementById("video").contentWindow.location.href;
+        document.getElementById("video_detail").src = currentUrl;
+
+        $("#video_detail").toggleClass("d-none");
+        $("#product-detail").toggleClass("d-none");
+    }
+
+    document.getElementById('image').addEventListener('click', function() {
+        $("#video_detail").toggleClass("d-none");
+        $("#product-detail").toggleClass("d-none");
+    });
 </script>

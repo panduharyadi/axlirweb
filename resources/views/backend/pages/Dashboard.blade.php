@@ -18,7 +18,7 @@
             </select>
           </div>
         </div>
-        <div id="chart"></div>
+        <div id="salesChart"></div>
       </div>
     </div>
   </div>
@@ -28,28 +28,18 @@
         <!-- Yearly Breakup -->
         <div class="card overflow-hidden">
           <div class="card-body p-4">
-            <h5 class="card-title mb-9 fw-semibold">Yearly Breakup</h5>
+            <h5 class="card-title mb-9 fw-semibold">Yearly Earnings</h5>
             <div class="row align-items-center">
               <div class="col-8">
-                <h4 class="fw-semibold mb-3">$36,358</h4>
-                <div class="d-flex align-items-center mb-3">
-                  <span
-                    class="me-1 rounded-circle bg-light-success round-20 d-flex align-items-center justify-content-center">
-                    <i class="ti ti-arrow-up-left text-success"></i>
-                  </span>
-                  <p class="text-dark me-1 fs-3 mb-0">+9%</p>
-                  <p class="fs-3 mb-0">last year</p>
-                </div>
-                <div class="d-flex align-items-center">
-                  <div class="me-4">
-                    <span class="round-8 bg-primary rounded-circle me-2 d-inline-block"></span>
-                    <span class="fs-2">2023</span>
+                @foreach ($yearEarnings as $year)
+                  <h4 class="fw-semibold mb-3">@currency($year->total)</h4>
+                  <div class="d-flex align-items-center">
+                    <div class="me-4">
+                      <span class="round-8 bg-primary rounded-circle me-2 d-inline-block"></span>
+                      <span class="fs-2">{{ $year->year }}</span>
+                    </div>
                   </div>
-                  <div>
-                    <span class="round-8 bg-light-primary rounded-circle me-2 d-inline-block"></span>
-                    <span class="fs-2">2023</span>
-                  </div>
-                </div>
+                @endforeach
               </div>
               <div class="col-4">
                 <div class="d-flex justify-content-center">
@@ -66,15 +56,17 @@
           <div class="card-body">
             <div class="row alig n-items-start">
               <div class="col-8">
-                <h5 class="card-title mb-9 fw-semibold"> Monthly Earnings </h5>
-                <h4 class="fw-semibold mb-3">$6,820</h4>
-                <div class="d-flex align-items-center pb-1">
-                  <span
-                    class="me-2 rounded-circle bg-light-danger round-20 d-flex align-items-center justify-content-center">
-                    <i class="ti ti-arrow-down-right text-danger"></i>
-                  </span>
-                  <p class="text-dark me-1 fs-3 mb-0">+9%</p>
-                  <p class="fs-3 mb-0">last year</p>
+                <h5 class="card-title mb-9 fw-semibold"> Montly Earnings </h5>
+                @foreach ($montlyEarnings as $montly)
+                  <h4 class="fw-semibold mb-3">@currency($montly->total)</h4>
+                  <div class="d-flex align-items-center pb-1">
+                    {{-- <span
+                      class="me-2 rounded-circle bg-light-danger round-20 d-flex align-items-center justify-content-center">
+                      <i class="ti ti-arrow-down-right text-danger hidden"></i>
+                    </span> --}}
+                    <p class="text-dark me-1 fs-3 mb-0">Bulan :</p>
+                    <p class="fs-3 mb-0">{{ $montly->month }}</p>
+                @endforeach
                 </div>
               </div>
               <div class="col-4">
@@ -344,4 +336,6 @@
     </div>
   </div>
 </div>
+
+
 @endsection

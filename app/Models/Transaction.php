@@ -14,11 +14,6 @@ class Transaction extends Model
 
     public function Product()
     {
-        return $this->belongsTo(Product::class);
-    }
-
-    public function Provinsi()
-    {
-        return $this->belongsTo(Provinsi::class);
+        return $this->belongsTo(Product::class, 'id_product', 'id');
     }
 }

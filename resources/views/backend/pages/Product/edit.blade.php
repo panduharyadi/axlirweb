@@ -23,8 +23,8 @@
         <label for="description">Description</label>
       </div>
       <label for="size" class="form-label">Size</label>
-      <select class="form-select mb-3" aria-label="Default select example" name="size">
-        <option selected disabled value="{{ $products->size }}">{{ $products->size }}</option>
+      <select class="form-select mb-3" aria-label="Default select example" name="size" value="{{ $products->size }}">
+        <option selected disabled value="">Select size</option>
         <option value="50ml">50ml</option>
         <option value="30ml">30ml</option>
       </select>

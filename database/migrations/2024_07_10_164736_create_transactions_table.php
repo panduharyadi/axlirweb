@@ -14,11 +14,13 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_product');
+            $table->string('size');
             $table->string('cust_name');
             $table->string('noHp');
             $table->text('alamat');
             $table->text('alamat_detail');
             $table->integer('qty');
+            $table->string('directBy')->default('web');
             $table->string('status')->default('waiting');
             $table->integer('total');
             $table->timestamps();

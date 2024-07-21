@@ -20,3 +20,6 @@
 <!-- Slick -->
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/slick.min.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/slick-theme.css') }}">
+
+{{-- lightbox --}}
+<link href="{{ asset('frontend/css/lightbox.css') }}" rel="stylesheet" />

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
+use App\Models\Product;
+use App\Models\Provinsi;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Product;
-use App\Models\Provinsi;
 
 class TransactionController extends Controller
 {
@@ -15,8 +16,6 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        // $transactions = Transaction::all();
-        // $products = Product::all();
         $transactions = Transaction::selectRaw('transactions.*, products.product_name, products.size, products.price')
             ->join('products', 'products.id', '=', 'transactions.id_product')
             ->get();
@@ -26,13 +25,13 @@ class TransactionController extends Controller
     /**
      * method for confirm transaction
      */
-    public function confirmTransaction()
-    {
-        $confirmTransaction = Transaction::selectRaw('transactions.*, products.product_name')
-            ->join('products', 'products.id', '=', 'transactions.id_product')
-            ->get();
-        return view('backend.pages.Confirm.confirm', compact('confirmTransaction'));
-    }
+    // public function confirmTransaction()
+    // {
+    //     $confirmTransaction = Transaction::selectRaw('transactions.*, products.product_name')
+    //         ->join('products', 'products.id', '=', 'transactions.id_product')
+    //         ->get();
+    //     return view('backend.pages.Confirm.confirm', compact('confirmTransaction'));
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -43,9 +42,53 @@ class TransactionController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store from user/customer
      */
     public function store(Request $request)
+    {
+        $product = Product::find($request->idProduct);
+
+        $price = $product->price; 
+        $qty = intval($request->qty);
+
+        $total = $price * $qty;
+
+        $provinsi = $request->provinsi;
+        $kota = $request->kota;
+        $kecamatan = $request->kecamatan;
+        $kelurahan = $request->kelurahan;
+
+        $alamat = $alamat = $provinsi . ', ' . $kota . ', ' . $kecamatan . ', ' . $kelurahan;
+
+        // validasi no hp
+        $noHp = $request->noHp;
+        if(substr($noHp, 0, 1) == '0') {
+            $noHp = '62' . substr($noHp, 1);
+        }
+
+        $transactions = Transaction::create([
+            'id_product' => $request->idProduct,
+            'cust_name'  => $request->custName,
+            'noHp'       => $noHp,
+            'alamat'     => $alamat,
+            'alamat_detail' => $request->detailAlamat,
+            'qty'        => $qty,
+            'directBy'   => 'web',
+            'total'      => $total,
+            'status'     => 'waiting',
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function transactionEcommerce()
+    {
+        $products = Product::all();
+        return view('backend.pages.Transaction.add', compact('products'));
+    }
+
+    // store Admin Manual
+    public function storeEcommerce(Request $request)
     {
         $product = Product::find($request->idProduct);
 
@@ -62,28 +105,62 @@ class TransactionController extends Controller
         $kecamatan = $request->kecamatan;
         $kelurahan = $request->kelurahan;
 
-        $alamat = $alamat = $provinsi . ', ' . $kota . ', ' . $kecamatan . ', ' . $kelurahan;
+        $alamat = $alamat = 'Prov ' . ' ' . $provinsi . ', ' . $kota . ', ' . $kecamatan . ', ' . $kelurahan;
+
+        // validasi no hp
+        $noHp = $request->noHp;
+        if(substr($noHp, 0, 1) == '0') {
+            $noHp = '62' . substr($noHp, 1);
+        }
 
         $transactions = Transaction::create([
             'id_product' => $request->idProduct,
             'cust_name'  => $request->custName,
-            'noHp'       => $request->noHp,
+            'noHp'       => $noHp,
             'alamat'     => $alamat,
             'alamat_detail' => $request->detailAlamat,
             'qty'        => $qty,
+            'directBy'   => $request->ecommerce,
             'total'      => $total,
-            'status'     => 'waiting'
+            'status'     => 'waiting',
         ]);
 
-        return redirect()->back();
+        return redirect()->route('admin.transaction')->with('success', 'Transaction created!');
     }
 
     /**
-     * Display the specified resource.
+     * Method Invoice
      */
     public function show(string $id)
     {
-        //
+        $findInvoice = Transaction::findOrFail($id);
+        $getProduct = Product::all();
+        return view('backend.pages.Transaction.Invoice', compact(['findInvoice', 'getProduct']));
+    }
+
+    // method cetak Resi
+    public function getResi(string $id)
+    {
+        $findResi = Transaction::findOrFail($id);
+        $getProduct = Product::all();
+
+        return view('backend.pages.Transaction.Resi', compact(['findResi', 'getProduct']));
+    }
+
+    // method retur produk
+    public function retur($id)
+    {
+        $transaction = Transaction::findOrFail($id);
+
+        $transaction->status = 'Retur';
+        $transaction->save();
+
+        // ngembaliin stock yang dibeli 
+        $product = Product::findOrFail($transaction->id_product);
+        $product->stock += $transaction->qty;
+        $product->save();
+
+        return redirect()->route('admin.transaction')->with('success', 'Retur confirmed');
     }
 
     /**
@@ -92,7 +169,7 @@ class TransactionController extends Controller
     public function edit(string $id)
     {
         $confirms = Transaction::findOrFail($id);
-        return view('backend.pages.confirm.edit', compact('confirms'));
+        return view('backend.pages.Transaction.updateStatus', compact('confirms'));
     }
 
     /**
@@ -102,7 +179,7 @@ class TransactionController extends Controller
     {
         $confirms = Transaction::findOrFail($id);
 
-        if(isset($_POST['btnaccept'])) {
+        if($request->has('btnaccept')) {
            $confirms->update([
              'cust_name' => $request->custName,
              'noHp' => $request->noHp,
@@ -113,8 +190,14 @@ class TransactionController extends Controller
              'total'  => $request->total
            ]);
 
-           return redirect()->route('admin.confirm.transaction')->with('success', 'Status Updated');
-        } else {
+        // ngurangin stock ketika status accept
+        $product = Product::findOrFail($confirms->id_product);
+        $product->stock -= $confirms->qty;
+        $product->save();
+
+        return redirect()->route('admin.transaction')->with('success', 'Status Updated');
+
+        } else if($request->has('btnreject')){
             $confirms->update([
                 'cust_name' => $request->custName,
                 'noHp' => $request->noHp,
@@ -125,7 +208,7 @@ class TransactionController extends Controller
                 'total'  => $request->total
               ]);
    
-              return redirect()->route('admin.confirm.transaction')->with('success', 'Status Updated');   
+              return redirect()->route('admin.transaction')->with('success', 'Status Updated');   
         }
     }
 

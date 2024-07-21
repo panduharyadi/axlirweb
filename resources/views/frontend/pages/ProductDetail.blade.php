@@ -8,7 +8,8 @@
             <div class="row">
                 <div class="col-lg-5 mt-5">
                     <div class="card mb-3">
-                        <img class="card-img img-fluid" src="{{ asset($products->image) }}" alt="Card image cap" id="product-detail">
+                        <iframe id="video_detail" class="d-none" src="" frameborder="0" class="card-img img-fluid"></iframe>
+                        <img class="card-img img-fluid" src="{{ asset($productFile[0]->path_file) }}" alt="Card image cap" id="product-detail">
                     </div>
                     <div class="row">
                         <!--Start Controls-->
@@ -20,31 +21,33 @@
                         </div>
                         <!--End Controls-->
                         <!--Start Carousel Wrapper-->
-                        <div id="multi-item-example" class="col-10 carousel slide carousel-multi-item" data-bs-ride="carousel">
+                        <div id="multi-item-example" class="col-10 carousel slide carousel-multi-item"
+                            data-bs-ride="carousel">
                             <!--Start Slides-->
                             <div class="carousel-inner product-links-wap" role="listbox">
-
-                                <!--First slide-->
                                 <div class="carousel-item active">
                                     <div class="row">
-                                        <div class="col-4">
-                                            <a href="#">
-                                                <img class="card-img img-fluid" src="{{ asset('frontend/img/product/produk1.0.jpg') }}" alt="Product Image 1">
-                                            </a>
-                                        </div>
-                                        <div class="col-4">
-                                            <a href="#">
-                                                <img class="card-img img-fluid" src="{{ asset('frontend/img/product/produk2.jpg') }}" alt="Product Image 2">
-                                            </a>
-                                        </div>
-                                        <div class="col-4">
-                                            <a href="#">
-                                                <img class="card-img img-fluid" src="{{ asset('frontend/img/product/produk3.jpg') }}" alt="Product Image 3">
-                                            </a>
-                                        </div>
+                                        @foreach ($productFile as $file)
+                                            @php
+                                                $extension = pathinfo($file->path_file, PATHINFO_EXTENSION);
+                                            @endphp
+
+                                            @if (!in_array($extension, ['jpg', 'jpeg', 'png', 'webp']))
+                                                <div class="col-4">
+                                                    <a href="#">
+                                                        <iframe id="video" width="108" height="108" src="{{ asset($file->path_file) }}" frameborder="0"></iframe>
+                                                    </a>
+                                                </div>
+                                            @else
+                                                <div class="col-4">
+                                                    <a href="#">
+                                                        <img id="image" class="card-img img-fluid" src="{{ asset($file->path_file) }}" alt="Product Image 3">
+                                                    </a>
+                                                </div>
+                                            @endif
+                                        @endforeach
                                     </div>
                                 </div>
-                                <!--/.First slide-->
                             </div>
                             <!--End Slides-->
                         </div>
@@ -84,8 +87,8 @@
 
                             <h6>Description:</h6>
                             <p>
-                                {{ $products->description }}    
-                            .</p>
+                                {{ $products->description }}
+                                .</p>
                             <ul class="list-inline">
                                 <li class="list-inline-item">
                                     <h6>Avaliable Size :</h6>
@@ -95,24 +98,14 @@
                                 </li>
                             </ul>
 
-                            <h6>Specification:</h6>
-                            <ul class="list-unstyled pb-3">
-                                <li>Lorem ipsum dolor sit</li>
-                                <li>Amet, consectetur</li>
-                                <li>Adipiscing elit,set</li>
-                                <li>Duis aute irure</li>
-                                <li>Ut enim ad minim</li>
-                                <li>Dolore magna aliqua</li>
-                                <li>Excepteur sint</li>
-                            </ul>
-
                             <form action="" method="GET">
                                 <input type="hidden" name="product-title" value="Activewear">
                                 <div class="row">
                                 </div>
                                 <div class="row pb-3">
                                     <div class="col d-grid">
-                                        <button type="button" class="btn btn-success btn-lg" value="buy" data-bs-toggle="modal" data-bs-target="#modalCheckout">Buy</button>
+                                        <button type="button" class="btn btn-success btn-lg" value="buy"
+                                            data-bs-toggle="modal" data-bs-target="#modalCheckout">Buy</button>
                                     </div>
                                 </div>
                             </form>
@@ -139,11 +132,15 @@
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0">
                             <img class="card-img rounded-0 img-fluid" src="{{ asset('frontend/img/product/produk1.jpg') }}">
-                            <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                            <div
+                                class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i
+                                                class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                                class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                                class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -176,12 +173,17 @@
                 <div class="p-2 pb-3">
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0">
-                            <img class="card-img rounded-0 img-fluid" src="{{ asset('frontend/img/product/produk2.jpg') }}">
-                            <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                            <img class="card-img rounded-0 img-fluid"
+                                src="{{ asset('frontend/img/product/produk2.jpg') }}">
+                            <div
+                                class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i
+                                                class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                                class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                                class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -214,12 +216,17 @@
                 <div class="p-2 pb-3">
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0">
-                            <img class="card-img rounded-0 img-fluid" src="{{ asset('frontend/img/product/produk3.jpg') }}">
-                            <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                            <img class="card-img rounded-0 img-fluid"
+                                src="{{ asset('frontend/img/product/produk3.jpg') }}">
+                            <div
+                                class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i
+                                                class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                                class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                                class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -253,11 +260,15 @@
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0">
                             <img class="card-img rounded-0 img-fluid" src="{{ asset('front/assets/img/shop_08.jpg') }}">
-                            <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                            <div
+                                class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i
+                                                class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                                class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                                class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -291,11 +302,15 @@
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0">
                             <img class="card-img rounded-0 img-fluid" src="{{ asset('front/assets/img/shop_08.jpg') }}">
-                            <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                            <div
+                                class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i
+                                                class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                                class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                                class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -329,11 +344,15 @@
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0">
                             <img class="card-img rounded-0 img-fluid" src="{{ asset('front/assets/img/shop_08.jpg') }}">
-                            <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                            <div
+                                class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i
+                                                class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                                class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                                class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -367,11 +386,15 @@
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0">
                             <img class="card-img rounded-0 img-fluid" src="{{ asset('front/assets/img/shop_08.jpg') }}">
-                            <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                            <div
+                                class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i
+                                                class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                                class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                                class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -405,11 +428,15 @@
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0">
                             <img class="card-img rounded-0 img-fluid" src="{{ asset('front/assets/img/shop_08.jpg') }}">
-                            <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                            <div
+                                class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i
+                                                class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                                class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                                class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -443,11 +470,15 @@
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0">
                             <img class="card-img rounded-0 img-fluid" src="{{ asset('front/assets/img/shop_08.jpg') }}">
-                            <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                            <div
+                                class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i
+                                                class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                                class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                                class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -481,11 +512,15 @@
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0">
                             <img class="card-img rounded-0 img-fluid" src="{{ asset('front/assets/img/shop_08.jpg') }}">
-                            <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                            <div
+                                class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i
+                                                class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                                class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                                class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -519,11 +554,15 @@
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0">
                             <img class="card-img rounded-0 img-fluid" src="{{ asset('front/assets/img/shop_08.jpg') }}">
-                            <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                            <div
+                                class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i
+                                                class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                                class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                                class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -557,11 +596,15 @@
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0">
                             <img class="card-img rounded-0 img-fluid" src="{{ asset('front/assets/img/shop_08.jpg') }}">
-                            <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                            <div
+                                class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i
+                                                class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                                class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                                class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -599,74 +642,121 @@
     <!-- End Article -->
 
     <!-- Modal -->
-    <div class="modal fade" id="modalCheckout" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+    <div class="modal fade" id="modalCheckout" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="{{ route('admin.transaction.store') }}" method="post">
-                    @csrf
-                    <div class="">
-                        <div class="row">
-                          <div class="col">
-                            <input type="hidden" class="form-control" name="idProduct" value="{{ $products->id }}">
-                            <div class="mb-3">
-                                <label for="custName" class="form-label">Your Name</label>
-                                <input type="text" class="form-control" id="custName" name="custName">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('admin.transaction.store') }}" method="post">
+                        @csrf
+                        <div class="">
+                            <div class="row">
+                                <div class="col">
+                                    <input type="hidden" class="form-control" name="idProduct"
+                                        value="{{ $products->id }}">
+                                    <div class="mb-3">
+                                        <label for="custName" class="form-label">Your Name</label>
+                                        <input type="text" class="form-control" id="custName" name="custName">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="noHp" class="form-label">Number Phone</label>
+                                        <input type="text" class="form-control" id="noHp" name="noHp">
+                                    </div>
+                                </div>
                             </div>
-                          </div>
-                          <div class="col">
-                            <div class="mb-3">
-                                <label for="noHp" class="form-label">Number Phone</label>
-                                <input type="text" class="form-control" id="noHp" name="noHp">
-                            </div>
-                          </div>
                         </div>
-                    </div>
 
-                    <select class="form-select mb-3" aria-label="Default select example" id="provinsi" name="provinsi">
-                        <option selected disabled>Pilih Provinsi</option>
-                        <option value=""></option> 
-                    </select>
+                        <div class="row">
+                            <div class="col">
+                                <label for="provinsi" class="form-label">Provinsi</label>
+                                <select class="form-select mb-3" aria-label="Default select example" id="provinsi" name="provinsi">
+                                    <option selected disabled>Pilih Provinsi</option>
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="kota">Kota</label>
+                                <select class="form-select mb-3" aria-label="Default select example" id="kota" name="kota">
+                                    <option selected disabled>Pilih Kota</option>
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col">
+                                <label for="kecamatan">Kecamatan</label>
+                                <select class="form-select mb-3" aria-label="Default select example" id="kecamatan" name="kecamatan">
+                                    <option selected disabled>Pilih Kecamatan</option>
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="kelurahan">Kelurahan</label>
+                                <select class="form-select mb-3" aria-label="Default select example" id="kelurahan" name="kelurahan">
+                                    <option selected disabled>Pilih Kelurahan</option>
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                        </div>
 
-                    <select class="form-select mb-3" aria-label="Default select example" id="kota" name="kota">
-                        <option selected disabled>Pilih Kota</option>
-                        <option value=""></option> 
-                    </select>
+                        <div class="mb-3">
+                            <input type="hidden" value="@currency($products->price)" name="priceProduct">
+                            <label for="qty" class="form-label">QTY</label>
+                            <input type="number" class="form-control" id="qty" name="qty">
+                        </div>
 
-                    <select class="form-select mb-3" aria-label="Default select example" id="kecamatan" name="kecamatan">
-                        <option selected disabled>Pilih Kecamatan</option>
-                        <option value=""></option> 
-                    </select>
+                        <div class="form-floating mb-3">
+                            <textarea class="form-control" placeholder="Berikan alamat lengkap seperti : No rumah, nama jalan, kode pos dll."
+                                id="address" name="detailAlamat"></textarea>
+                            <label for="address"></label>
+                        </div>
+                        
+                        {{-- payment method --}}
+                        <div class="accordion accordion-flush mb-3" id="accordionFlushExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                        aria-controls="flush-collapseOne">
+                                        <img src="{{ asset('frontend/img/method/bca1.png') }}" width="80"
+                                            alt="">
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                    aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">No rekening bca</div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                        aria-controls="flush-collapseTwo">
+                                        <img src="{{ asset('frontend/img/method/mandiri1.png') }}" width="80"
+                                            alt="">
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                    aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">no rekening mandiri</div>
+                                </div>
+                            </div>
+                        </div>
 
-                    <select class="form-select mb-3" aria-label="Default select example" id="kelurahan" name="kelurahan">
-                        <option selected disabled>Pilih Kelurahan</option>
-                        <option value=""></option> 
-                    </select>
-    
-                    <div class="form-floating">
-                        <textarea class="form-control" placeholder="Berikan alamat lengkap seperti : No rumah, nama jalan, kode pos dll." id="address" name="detailAlamat"></textarea>
-                        <label for="address"></label>
-                    </div>
-
-                    <div class="mb-3">
-                      <input type="hidden" value="@currency($products->price)" name="priceProduct">
-                      <label for="qty" class="form-label">QTY</label>
-                      <input type="number" class="form-control" id="qty" name="qty">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-          </div>
         </div>
     </div>
-@endsection
-
     
-
+@endsection

@@ -18,8 +18,4 @@ class Product extends Model
         return $this->belongsTo(Transaction::class);
     }
 
-    public function Provinsi()
-    {
-        return $this->belongsTo(Provinsi::class);
-    }
 }

@@ -48,14 +48,14 @@
               <span class="hide-menu">Transaction</span>
             </a>
           </li>
-          <li class="sidebar-item">
+          {{-- <li class="sidebar-item">
             <a class="sidebar-link {{ request()->routeIs('admin.confirm.transaction') ? 'active' : '' }}" href="{{ route('admin.confirm.transaction') }}" aria-expanded="false">
               <span>
                 <i class="ti ti-cash-register"></i>
               </span>
               <span class="hide-menu">Confirm Transaction</span>
             </a>
-          </li>
+          </li> --}}
           <li class="sidebar-item">
             <a class="sidebar-link {{ request()->routeIs('admin.user.list') ? 'active' : '' }}" href="{{ route('admin.user.list') }}" aria-expanded="false">
               <span>
@@ -64,7 +64,7 @@
               <span class="hide-menu">User Track</span>
             </a>
           </li>
-          <li class="sidebar-item">
+          <li class="sidebar-item hidden">
             <a class="sidebar-link " href="*" aria-expanded="false">
               <span>
                 <i class="ti ti-news"></i>
