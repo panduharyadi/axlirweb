@@ -23,7 +23,7 @@
 @section('content')
     <div class="container mt-4">
         <div class="row">
-            <div class="col">
+            <div class="col-12 col-md-6">
                 <h2>Axlir Blog</h2>
                 <div class="search">
                     <div class="input-group mb-3">
@@ -39,7 +39,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col">
+            <div class="col-12 col-md-6">
 
             </div>
         </div>
@@ -53,27 +53,23 @@
         <hr class="mb-3">
 
         <div class="row mb-4 mt-4">
-            <div class="col">
+            <div class="col-12 col-md-6">
                 <div class="card">
-                    <div class="card">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                          <p class="card-text"><small class="text-muted">Read post</small><i class="ti ti-corner-right-up-double text-muted"></i></p>
-                        </div>
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      <p class="card-text"><small class="text-muted">Read post</small><i class="ti ti-corner-right-up-double text-muted"></i></p>
                     </div>
                 </div>
             </div>
-            <div class="col">
+            <div class="col-12 col-md-6">
                 <div class="card">
-                    <div class="card">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                          <p class="card-text"><small class="text-muted">Read post</small></p>
-                        </div>
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      <p class="card-text"><small class="text-muted">Read post</small></p>
                     </div>
                 </div>
             </div>
