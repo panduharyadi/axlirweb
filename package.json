@@ -17,6 +17,7 @@
     },
     "dependencies": {
         "@tabler/icons": "^3.9.0",
-        "lightbox2": "^2.11.4"
+        "lightbox2": "^2.11.4",
+        "sweetalert2": "^11.12.3"
     }
 }

@@ -3,6 +3,13 @@
 @section('title', 'Product add')
 
 @section('content')
+
+@if (session('success'))
+  <script>
+    Swal.fire('Success', '{{ session('success') }}', 'success');
+  </script>
+@endif
+
 <h5 class="card-title fw-semibold mb-4">Forms</h5>
 <div class="card">
   <div class="card-body">
@@ -35,8 +42,9 @@
         <label for="price" class="form-label">Price</label>
         <input type="text" class="form-control" name="price" id="price">
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary" onclick="product()">Submit</button>
     </form>
   </div>
 </div>
+
 @endsection

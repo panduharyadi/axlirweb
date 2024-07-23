@@ -22,7 +22,7 @@ class ProductController extends Controller
             if(isset($chartData[$date])) {
                 $chartData[$date] += $transaction->total;
             } else {
-                $chartData[$date] = $transaction->total;
+                $chartData[$date] = $transaction->total; 
             }
         }
         return view('backend.pages.Product.Product', compact('products', 'transactions', 'chartData'));
