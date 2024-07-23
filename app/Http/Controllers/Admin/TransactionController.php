@@ -19,19 +19,19 @@ class TransactionController extends Controller
         $transactions = Transaction::selectRaw('transactions.*, products.product_name, products.size, products.price')
             ->join('products', 'products.id', '=', 'transactions.id_product')
             ->get();
-        return view('backend.pages.Transaction.Transaction', compact(['transactions']));
-    }
 
-    /**
-     * method for confirm transaction
-     */
-    // public function confirmTransaction()
-    // {
-    //     $confirmTransaction = Transaction::selectRaw('transactions.*, products.product_name')
-    //         ->join('products', 'products.id', '=', 'transactions.id_product')
-    //         ->get();
-    //     return view('backend.pages.Confirm.confirm', compact('confirmTransaction'));
-    // }
+        $chartData = [];
+        foreach ($transactions as $transaction) {
+            $date = Carbon::parse($transaction->created_at)->format('d/m');
+            if(isset($chartData[$date])) {
+                $chartData[$date] += $transaction->total;
+            } else {
+                $chartData[$date] = $transaction->total;
+            }
+        }
+        
+        return view('backend.pages.Transaction.Transaction', compact(['transactions', 'chartData']));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -72,6 +72,8 @@ class TransactionController extends Controller
             'noHp'       => $noHp,
             'alamat'     => $alamat,
             'alamat_detail' => $request->detailAlamat,
+            'size'       => $request->size,
+            'price'      => $request->price,
             'qty'        => $qty,
             'directBy'   => 'web',
             'total'      => $total,
@@ -84,7 +86,17 @@ class TransactionController extends Controller
     public function transactionEcommerce()
     {
         $products = Product::all();
-        return view('backend.pages.Transaction.add', compact('products'));
+        $transactions = Transaction::all();
+        $chartData = [];
+        foreach ($transactions as $transaction) {
+            $date = Carbon::parse($transaction->created_at)->format('d/m');
+            if(isset($chartData[$date])) {
+                $chartData[$date] += $transaction->total;
+            } else {
+                $chartData[$date] = $transaction->total;
+            }
+        }
+        return view('backend.pages.Transaction.add', compact('products', 'transactions', 'chartData'));
     }
 
     // store Admin Manual
@@ -95,7 +107,7 @@ class TransactionController extends Controller
         $product->stock -= intval($request->qty);
         $product->save();
 
-        $price = $product->price; 
+        $price = $request->price; 
         $qty = intval($request->qty);
 
         $total = $price * $qty;
@@ -119,6 +131,8 @@ class TransactionController extends Controller
             'noHp'       => $noHp,
             'alamat'     => $alamat,
             'alamat_detail' => $request->detailAlamat,
+            'size'       => $request->size,
+            'price'      => $request->price,
             'qty'        => $qty,
             'directBy'   => $request->ecommerce,
             'total'      => $total,
@@ -134,8 +148,20 @@ class TransactionController extends Controller
     public function show(string $id)
     {
         $findInvoice = Transaction::findOrFail($id);
-        $getProduct = Product::all();
-        return view('backend.pages.Transaction.Invoice', compact(['findInvoice', 'getProduct']));
+        $getProduct = Product::where('id', $findInvoice->id_product)->get();
+
+        // ini biar sales chart ga error
+        $transactions = Transaction::all();
+        $chartData = [];
+        foreach ($transactions as $transaction) {
+            $date = Carbon::parse($transaction->created_at)->format('d/m');
+            if(isset($chartData[$date])) {
+                $chartData[$date] += $transaction->total;
+            } else {
+                $chartData[$date] = $transaction->total;
+            }
+        }
+        return view('backend.pages.Transaction.Invoice', compact(['findInvoice', 'getProduct', 'transactions', 'chartData']));
     }
 
     // method cetak Resi
@@ -143,8 +169,18 @@ class TransactionController extends Controller
     {
         $findResi = Transaction::findOrFail($id);
         $getProduct = Product::all();
+        $transactions = Transaction::all();
+        $chartData = [];
+        foreach ($transactions as $transaction) {
+            $date = Carbon::parse($transaction->created_at)->format('d/m');
+            if(isset($chartData[$date])) {
+                $chartData[$date] += $transaction->total;
+            } else {
+                $chartData[$date] = $transaction->total;
+            }
+        }
 
-        return view('backend.pages.Transaction.Resi', compact(['findResi', 'getProduct']));
+        return view('backend.pages.Transaction.Resi', compact(['findResi', 'getProduct', 'transactions', 'chartData']));
     }
 
     // method retur produk
@@ -169,7 +205,17 @@ class TransactionController extends Controller
     public function edit(string $id)
     {
         $confirms = Transaction::findOrFail($id);
-        return view('backend.pages.Transaction.updateStatus', compact('confirms'));
+        $transactions = Transaction::all();
+        $chartData = [];
+        foreach ($transactions as $transaction) {
+            $date = Carbon::parse($transaction->created_at)->format('d/m');
+            if(isset($chartData[$date])) {
+                $chartData[$date] += $transaction->total;
+            } else {
+                $chartData[$date] = $transaction->total;
+            }
+        }
+        return view('backend.pages.Transaction.updateStatus', compact('confirms', 'transactions', 'chartData'));
     }
 
     /**
@@ -225,6 +271,16 @@ class TransactionController extends Controller
         $users = Transaction::selectRaw('transactions.*, products.product_name')
             ->join('products', 'products.id', '=', 'transactions.id_product')
             ->get();
-        return view('backend.pages.User.List', compact('users'));
+        $transactions = Transaction::all();
+        $chartData = [];
+        foreach ($transactions as $transaction) {
+            $date = Carbon::parse($transaction->created_at)->format('d/m');
+            if(isset($chartData[$date])) {
+                $chartData[$date] += $transaction->total;
+            } else {
+                $chartData[$date] = $transaction->total;
+            }
+        }
+        return view('backend.pages.User.List', compact('users', 'transactions', 'chartData'));
     }
 }

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\Models\Product;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\ProductFile;
 use App\Models\Transaction;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -14,12 +15,32 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('backend.pages.Product.Product', compact('products'));
+        $transactions = Transaction::all();
+        $chartData = [];
+        foreach ($transactions as $transaction) {
+            $date = Carbon::parse($transaction->created_at)->format('d/m');
+            if(isset($chartData[$date])) {
+                $chartData[$date] += $transaction->total;
+            } else {
+                $chartData[$date] = $transaction->total;
+            }
+        }
+        return view('backend.pages.Product.Product', compact('products', 'transactions', 'chartData'));
     }
 
     public function create()
     {
-        return view('backend.pages.Product.add');
+        $transactions = Transaction::all();
+        $chartData = [];
+        foreach ($transactions as $transaction) {
+            $date = Carbon::parse($transaction->created_at)->format('d/m');
+            if(isset($chartData[$date])) {
+                $chartData[$date] += $transaction->total;
+            } else {
+                $chartData[$date] = $transaction->total;
+            }
+        }
+        return view('backend.pages.Product.add', compact('transactions', 'chartData'));
     }
 
     public function store(Request $request)

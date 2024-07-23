@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\Models\Slider;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -12,12 +14,33 @@ class SliderController extends Controller
     public function index() 
     {
         $sliders = Slider::all();
-        return view('backend.pages.Slider.Slider', compact('sliders'));
+        $transactions = Transaction::all();
+        $chartData = [];
+        foreach ($transactions as $transaction) {
+            $date = Carbon::parse($transaction->created_at)->format('d/m');
+            if(isset($chartData[$date])) {
+                $chartData[$date] += $transaction->total;
+            } else {
+                $chartData[$date] = $transaction->total;
+            }
+        }
+        
+        return view('backend.pages.Slider.Slider', compact('sliders', 'transactions', 'chartData'));
     }
 
     public function create()
     {
-        return view('backend.pages.Slider.add');
+        $transactions = Transaction::all();
+        $chartData = [];
+        foreach ($transactions as $transaction) {
+            $date = Carbon::parse($transaction->created_at)->format('d/m');
+            if(isset($chartData[$date])) {
+                $chartData[$date] += $transaction->total;
+            } else {
+                $chartData[$date] = $transaction->total;
+            }
+        }
+        return view('backend.pages.Slider.add', compact('transactions', 'chartData'));
     }
 
     public function store(Request $request)

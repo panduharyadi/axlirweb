@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-lg-5 mt-5">
                     <div class="card mb-3">
-                        <iframe id="video_detail" class="d-none" src="" frameborder="0" class="card-img img-fluid"></iframe>
+                        <iframe id="video_detail" class="d-none card-img img-fluid" src="" frameborder="0" class="card-img img-fluid"></iframe>
                         <img class="card-img img-fluid" src="{{ asset($productFile[0]->path_file) }}" alt="Card image cap" id="product-detail">
                     </div>
                     <div class="row">
@@ -91,10 +91,11 @@
                                 .</p>
                             <ul class="list-inline">
                                 <li class="list-inline-item">
-                                    <h6>Avaliable Size :</h6>
+                                    <h6>Size :</h6>
                                 </li>
                                 <li class="list-inline-item">
-                                    <p class="text-muted"><strong>50ml / 30ml</strong></p>
+                                    {{-- <p class="text-muted"><strong>50ml / 30ml</strong></p> --}}
+                                    <span class="btn btn-success btn-size">{{ $products->size }}</span>
                                 </li>
                             </ul>
 
@@ -703,6 +704,20 @@
                                     <option value=""></option>
                                 </select>
                             </div>
+                        </div>
+
+                        <div class="mb-3">
+                            {{-- <label for="size">Size</label>
+                            <select class="form-select mb-3" aria-label="Default select example" id="size" name="size">
+                                <option selected disabled>Pilih Size</option>
+                                <option value="50ml">50ml</option>
+                                <option value="30ml">30ml</option>
+                            </select> --}}
+                            <input type="hidden" name="size" value="{{ $products->size }}" />
+                        </div>
+
+                        <div class="mb-3 hidden">
+                            <input type="hidden" value="{{ $products->price }}" name="price">
                         </div>
 
                         <div class="mb-3">

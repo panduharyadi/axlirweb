@@ -39,18 +39,34 @@
                   </div>
                 </div>
                 <div class="col">
-                  <label for="size" class="form-label">Size</label>
-                  <select class="form-select mb-3" aria-label="Default select example" name="size">
-                    <option selected disabled>Select Size</option>
-                    <option value="50ml">50ml</option>
-                    <option value="30ml">30ml</option>
+                  <label for="size" class="form-label">Ecommerce</label>
+                  <select class="form-select mb-3" aria-label="Default select example" name="ecommerce">
+                    <option selected disabled>Select Ecommerce</option>
+                    <option value="Shopee">Shopee</option>
+                    <option value="Tokped">Tokped</option>
+                    <option value="Lazada">Lazada</option>
+                    <option value="Tokped">Tokped</option>
+                    <option value="Tiktok">Tiktok</option>
                   </select>
                 </div>
-              </div>
+                
+              @foreach ($products as $product)
+                  <input type="hidden" name="size" value="{{ $product->size }}">
+              @endforeach
 
-              <div class="mb-3">
-                <label for="qty" class="form-label">Qty</label>
-                <input type="text" class="form-control" name="qty" id="qty">
+              <div class="row">
+                <div class="col">
+                  <div class="mb-3 hidden">
+                    <label for="price" class="form-label">Price Ecommerce</label>
+                    <input type="text" class="form-control" name="price" id="price">
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="qty" class="form-label">Qty</label>
+                    <input type="text" class="form-control" name="qty" id="qty">
+                  </div>
+                </div>
               </div>
               
               <div class="row">
@@ -89,18 +105,10 @@
                 <label for="address"></label>
             </div>
 
-                <label for="size" class="form-label">Ecommerce</label>
-                <select class="form-select mb-3" aria-label="Default select example" name="ecommerce">
-                  <option selected disabled>Select Ecommerce</option>
-                  <option value="Shopee">Shopee</option>
-                  <option value="Tokped">Tokped</option>
-                  <option value="Lazada">Lazada</option>
-                  <option value="Tokped">Tokped</option>
-                  <option value="Tiktok">Tiktok</option>
-                </select>
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </form>
-            </div>
+                
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
         </div>
+    </div>
     
 @endsection

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('noHp');
             $table->text('alamat');
             $table->text('alamat_detail');
+            $table->integer('price');
             $table->integer('qty');
             $table->string('directBy')->default('web');
             $table->string('status')->default('waiting');

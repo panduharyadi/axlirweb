@@ -88,16 +88,18 @@
                                     </tr>
                                 </thead><!-- end thead -->
                                 <tbody>
-                                @foreach ($getProduct as $product)
+                                {{-- @foreach ($getProduct as $product) --}}
                                     <tr>
                                         <th scope="row">01</th>
                                         <td>
                                             <div>
-                                                <h5 class="text-truncate font-size-14 mb-1">{{ $product->product_name }}</h5>
-                                                <p class="text-muted mb-0">{{ $product->size }}</p>
+                                                @foreach ($getProduct as $product)
+                                                    <h5 class="text-truncate font-size-14 mb-1">{{ $product->product_name }}</h5>
+                                                @endforeach
+                                                <p class="text-muted mb-0">{{ $findInvoice->size }}</p>
                                             </div>
                                         </td>
-                                        <td>@currency($product->price)</td>
+                                        <td>@currency($findInvoice->price)</td>
                                         <td>{{ $findInvoice->qty }}</td>
                                         <td class="text-end">@currency($findInvoice->total)</td>
                                     </tr>
@@ -118,7 +120,7 @@
                                         <td class="border-0 text-end"><h4 class="m-0 fw-semibold">@currency($findInvoice->total)</h4></td>
                                     </tr>
                                     <!-- end tr -->
-                                @endforeach
+                                {{-- @endforeach --}}
                                 </tbody><!-- end tbody -->
                             </table><!-- end table -->
                         </div><!-- end table responsive -->

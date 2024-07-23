@@ -27,7 +27,7 @@
             </div>
         </div>
     </div> --}}
-    {{-- <div class="container">
+    <div class="container">
         <div class="row">
             <div class="col-12">
                 <a href="#">
@@ -35,7 +35,7 @@
                 </a>
             </div>
         </div>
-    </div> --}}
+    </div>
 </section>
 <!-- End Categories of The Month -->
 

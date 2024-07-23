@@ -13,11 +13,13 @@ class HomeController extends Controller
 {
     public function backend()
     {
-        $transactions = Transaction::all();
+        // chart bar pendapatan perhari
+        $transactions = Transaction::where('status', 'Accept')->get();
 
         $chartData = [];
         foreach ($transactions as $transaction) {
             $date = Carbon::parse($transaction->created_at)->format('d/m');
+         
             if(isset($chartData[$date])) {
                 $chartData[$date] += $transaction->total;
             } else {
@@ -25,10 +27,12 @@ class HomeController extends Controller
             }
         }
 
+        // total pendapatan perbulan
         $montlyEarnings = Transaction::select(DB::raw('MONTHNAME(created_at) as month'), DB::raw('SUM(CASE WHEN status = "accept" THEN total ELSE 0 END) as total'))
             ->groupBy('month')
             ->get();
         
+        // total pendapatan pertahun
         $yearEarnings = Transaction::select(DB::raw('YEAR(created_at) as year'), DB::raw('SUM(CASE WHEN status = "accept" THEN total ELSE 0 END) as total'))
             ->groupBy('year')
             ->get();
