@@ -7,8 +7,8 @@
         <div class="container pb-5">
             <div class="row">
                 <div class="col-lg-5 mt-5">
-                    <div class="card mb-3">
-                        <iframe id="video_detail" class="d-none card-img img-fluid" src="" frameborder="0" class="card-img img-fluid"></iframe>
+                    <div class="card mb-3 ">
+                        <iframe style="height: 450px" id="video_detail" class="d-none card-img img-fluid" src="" frameborder="0" class="card-img img-fluid"></iframe>
                         <img class="card-img img-fluid" src="{{ asset($productFile[0]->path_file) }}" alt="Card image cap" id="product-detail">
                     </div>
                     <div class="row">

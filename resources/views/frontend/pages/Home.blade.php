@@ -28,14 +28,15 @@
         </div>
     </div> --}}
     <div class="container">
-        <div class="row">
-            <div class="col-12">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
                 <a href="#">
-                    <img src="{{ asset('frontend/img/logo/banner-spek.jpg') }}" alt="" srcset="" width="1100">
+                    <img src="{{ asset('frontend/img/logo/banner-spek.jpg') }}" alt="Banner" class="img-fluid">
                 </a>
             </div>
         </div>
     </div>
+    
 </section>
 <!-- End Categories of The Month -->
 
