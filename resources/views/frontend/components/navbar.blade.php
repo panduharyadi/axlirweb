@@ -35,7 +35,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <a class="nav-icon d-none d-lg-inline" href="#" id="search-toggle">
                     <i class="fa fa-fw fa-search text-dark"></i>
                 </a>
@@ -65,18 +65,15 @@
         var searchContainer = document.getElementById('search-container');
 
         searchToggle.addEventListener('click', function (event) {
-            event.preventDefault(); // Mencegah default action dari link
+            event.preventDefault(); 
 
-            // Toggle kelas d-none untuk menampilkan atau menyembunyikan input
             searchContainer.classList.toggle('d-none');
             
-            // Fokus pada input ketika ditampilkan
             if (!searchContainer.classList.contains('d-none')) {
                 searchContainer.querySelector('input').focus();
             }
         });
 
-        // Opsional: Sembunyikan input pencarian ketika klik di luar
         document.addEventListener('click', function (event) {
             if (!searchContainer.contains(event.target) && !searchToggle.contains(event.target)) {
                 searchContainer.classList.add('d-none');
