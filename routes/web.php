@@ -10,6 +10,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Region\KotaController;
 use App\Http\Controllers\Region\ProvinsiController;
+use App\Http\Controllers\User\BlogController;
 use App\Http\Controllers\user\MainAccordController;
 use App\Http\Controllers\User\ProductController as UserProductController;
 use App\Http\Controllers\User\TransactionController as UserTransactionController;
@@ -30,16 +31,12 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 // routes user
-// Route::get('/product', function() {
-//     return view('frontend.pages.ProductDetail');
-// })->name('product-detail');
-
-// Route::controller(MainAccordController::class)->group(function () {
-//     Route::get('user/accords', 'index')->name('user.accords');
-// });
-
 Route::controller(UserProductController::class)->group(function () {
     Route::get('user/productDetail/{id}', 'detailProduct')->name('user.product.detail');
+});
+
+Route::controller(BlogController::class)->group(function () {
+    Route::get('/user/blog', 'index')->name('user.blog.list');
 });
 
 

@@ -19,7 +19,7 @@
                         <a class="nav-link" href="about.html">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Blog</a>
+                        <a class="nav-link" href="{{ route('user.blog.list') }}">Blog</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">Contact</a>

@@ -23,3 +23,6 @@
 
 {{-- lightbox --}}
 <link href="{{ asset('frontend/css/lightbox.css') }}" rel="stylesheet" />
+
+{{-- icon --}}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
