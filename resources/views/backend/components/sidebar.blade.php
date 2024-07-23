@@ -65,7 +65,7 @@
             </a>
           </li>
           <li class="sidebar-item hidden">
-            <a class="sidebar-link " href="*" aria-expanded="false">
+            <a class="sidebar-link " href="{{ route('admin.blogs') }}" aria-expanded="false">
               <span>
                 <i class="ti ti-news"></i>
               </span>

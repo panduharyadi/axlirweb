@@ -53,26 +53,18 @@
         <hr class="mb-3">
 
         <div class="row mb-4 mt-4">
-            <div class="col-12 col-md-6">
-                <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                      <p class="card-text"><small class="text-muted">Read post</small><i class="ti ti-corner-right-up-double text-muted"></i></p>
+            @foreach ($blogs as $blog)
+                <div class="col-12 col-md-6 mb-4 mt-4">
+                    <div class="card">
+                        <img src="{{ asset($blog->image) }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                        <h5 class="card-title">{{ $blog->headline }}</h5>
+                        <p class="card-text">{{ $blog->slug }}</p>
+                        <p class="card-text"><small class="text-muted">Read post</small><i class="ti ti-corner-right-up-double text-muted"></i></p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-12 col-md-6">
-                <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                      <p class="card-text"><small class="text-muted">Read post</small></p>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 @endsection

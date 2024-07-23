@@ -1,20 +1,14 @@
 <?php
 
-use App\Http\Controllers\Admin\confirmTransactionController as AdminConfirmTransactionController;
-use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\SliderController;
-use App\Http\Controllers\Admin\StockController;
-use App\Http\Controllers\Admin\TransactionController;
-use App\Http\Controllers\confirmTransactionController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Region\KotaController;
-use App\Http\Controllers\Region\ProvinsiController;
-use App\Http\Controllers\User\BlogController;
-use App\Http\Controllers\user\MainAccordController;
+use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\StockController;
+use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\User\ProductController as UserProductController;
-use App\Http\Controllers\User\TransactionController as UserTransactionController;
-use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'frontend'])->name('home');
 
@@ -36,7 +30,7 @@ Route::controller(UserProductController::class)->group(function () {
 });
 
 Route::controller(BlogController::class)->group(function () {
-    Route::get('/user/blog', 'index')->name('user.blog.list');
+    Route::get('/user/blog', 'feBlog')->name('user.blog.list');
 });
 
 
@@ -92,6 +86,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
         // route user track
         Route::get('admin/user/track', 'listUser')->name('admin.user.list');
+    });
+
+    // Blog
+    Route::controller(BlogController::class)->group(function () {
+        Route::get('/admin/blogs', 'index')->name('admin.blogs');
+        Route::get('/admin/blog/add', 'create')->name('admin.blog.add');
+        Route::post('/admin/blog/post', 'store')->name('admin.blog.store');
     });
 
 });
