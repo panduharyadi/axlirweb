@@ -57,6 +57,7 @@ class SliderController extends Controller
         Slider::create([
             'headline' => $request->headline,
             'image' => $image_path,
+            'interval' => $request->interval
         ]);
 
         $request->session()->flash('success', 'Slider Created');
@@ -65,8 +66,18 @@ class SliderController extends Controller
 
     public function edit(String $id)
     {
+        $transactions = Transaction::all();
+        $chartData = [];
+        foreach ($transactions as $transaction) {
+            $date = Carbon::parse($transaction->created_at)->format('d/m');
+            if(isset($chartData[$date])) {
+                $chartData[$date] += $transaction->total;
+            } else {
+                $chartData[$date] = $transaction->total;
+            }
+        }
         $sliders = Slider::findOrFail($id);
-        return view('backend.pages.Slider.edit', compact('sliders')); 
+        return view('backend.pages.Slider.edit', compact('sliders', 'chartData')); 
     }
 
     public function update(Request $request, $id)
@@ -88,12 +99,14 @@ class SliderController extends Controller
             // update slider dengan gambar baru
             $sliders->update([
                 'headline' => $request->headline,
-                'image' => $image_path
+                'image' => $image_path,
+                'interval' => $request->interval
             ]);
         } else {
             // update slider tanpa gambar
             $sliders->update([
                 'headline' => $request->headline,
+                'interval' => $request->interval
             ]);
         }
 

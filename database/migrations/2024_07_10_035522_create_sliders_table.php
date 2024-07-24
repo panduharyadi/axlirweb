@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('headline');
             $table->string('image');
+            $table->integer('interval');
             $table->timestamps();
         });
     }

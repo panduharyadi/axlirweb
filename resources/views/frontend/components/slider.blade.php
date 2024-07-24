@@ -6,7 +6,7 @@
   </div>
   <div class="carousel-inner">
     @foreach ($sliders as $key => $slider)
-      <div class="carousel-item @if($key === 0) active @endif">
+      <div class="carousel-item @if($key === 0) active @endif" data-bs-interval="{{ $slider->interval }}">
         <img src="{{ asset($slider->image) }}" class="d-block w-100" alt="...">
       </div>
     @endforeach

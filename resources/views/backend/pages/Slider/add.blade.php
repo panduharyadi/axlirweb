@@ -17,7 +17,11 @@
         <label for="slider" class="form-label">Slider Headline</label>
         <input type="text" class="form-control" name="headline" id="slider">
       </div>
-      <button type="submit" class="btn btn-primary" onclick="addSlider()">Submit</button>
+      <div class="mb-3">
+        <label for="intval" class="form-label">set interval slider</label>
+        <input type="integer" class="form-control" name="interval" id="intval">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </div>
 </div>

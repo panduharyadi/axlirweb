@@ -150,10 +150,11 @@
             </thead>
             <tbody>
               <tr>
+                @if($products != "Data belum tersedia")
                 <td class="border-bottom-0"><h6 class="fw-semibold mb-0">1</h6></td>
                 <td class="border-bottom-0">
-                    <h6 class="fw-semibold mb-1">{{ $products->product_name }}</h6>
-                    <span class="fw-normal">{{ $products->size }}</span>                          
+                    <h6 class="fw-semibold mb-1">tes</h6>
+                    <span class="fw-normal">tes</span>                          
                 </td>
                 {{-- <td class="border-bottom-0">
                   <p class="mb-0 fw-normal">{{ $products->id_product }}</p>
@@ -162,8 +163,11 @@
                   <div class="d-flex align-items-center gap-2">
                     <span class="badge bg-primary rounded-3 fw-semibold">Low</span>
                   </div>
-                </td> 
-              </tr>                      
+                </td>
+                @else
+                  <p>{{ $products }}</p>
+                @endif            
+              </tr>
             </tbody>
           </table>
         </div>

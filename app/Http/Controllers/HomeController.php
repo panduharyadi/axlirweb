@@ -48,7 +48,7 @@ class HomeController extends Controller
             ->orderByDesc('total_purchase')
             ->first();
 
-        $products = Product::findOrFail($mostProducts->id_product);
+        $products = $mostProducts ? Product::findOrFail($mostProducts->id_product) : "Data belum tersedia";
 
         return view("backend.pages.Dashboard", compact('montlyEarnings', 'yearEarnings', 'chartData', 'delivered', 'pending', 'cancelled', 'products'));
     }

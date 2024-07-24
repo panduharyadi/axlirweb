@@ -30,7 +30,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 text-center">
-                <a href="#">
+                <a href="{{ url('main-accords') }}">
                     <img src="{{ asset('frontend/img/logo/banner-spek.jpg') }}" alt="Banner" class="img-fluid">
                 </a>
             </div>

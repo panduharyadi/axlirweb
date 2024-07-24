@@ -29,6 +29,10 @@ Route::controller(UserProductController::class)->group(function () {
     Route::get('user/productDetail/{id}', 'detailProduct')->name('user.product.detail');
 });
 
+Route::get('/main-accords', function() {
+    return view('frontend.pages.mainAccords');
+});
+
 Route::controller(BlogController::class)->group(function () {
     Route::get('/user/blog', 'feBlog')->name('user.blog.list');
 });

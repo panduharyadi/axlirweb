@@ -16,6 +16,7 @@ class BlogController extends Controller
     public function index()
     {
         $blogs = Blog::all();
+
         $transactions = Transaction::all();
         $chartData = [];
         foreach ($transactions as $transaction) {

@@ -17,7 +17,11 @@
         <label for="slider" class="form-label">Slider Headline</label>
         <input type="text" class="form-control" name="headline" id="slider" value="{{ $sliders->headline }}">
       </div>
-      <button type="submit" class="btn btn-outline-danger btn-block">Submit</button>
+      <div class="mb-3">
+        <label for="intval" class="form-label">Set interval slider</label>
+        <input type="text" class="form-control" name="interval" id="intval" value="{{ $sliders->interval }}">
+      </div>
+      <button type="submit" class="btn btn-outline-info btn-block">Submit</button>
     </form>
   </div>
 </div>
