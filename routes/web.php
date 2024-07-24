@@ -80,6 +80,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('admin/resi/{id}', 'getResi')->name('admin.resi');
         Route::post('admin/invoice/retur/{id}', 'retur')->name('admin.invoice.retur');
 
+        // Route Pengiriman
+        Route::get('admin/pengiriman/edit/{id}', 'editPengiriman')->name('admin.edit.pengiriman');
+        Route::put('admin/pengiriman/update/{id}', 'updatePengiriman')->name('admin.update.pengiriman');
+
         // Route ecommerce transaction
         Route::get('admin/transaction/ecommerce', 'transactionEcommerce')->name('admin.transaction.ecommerce');
         Route::post('admin/transaction/ecommerce/store', 'storeEcommerce')->name('admin.transaction.ecommerce.store');

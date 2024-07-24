@@ -78,6 +78,7 @@ class TransactionController extends Controller
             'directBy'   => 'web',
             'total'      => $total,
             'status'     => 'waiting',
+            'pengiriman' => 'menunggu'
         ]);
 
         return redirect()->back();
@@ -137,6 +138,7 @@ class TransactionController extends Controller
             'directBy'   => $request->ecommerce,
             'total'      => $total,
             'status'     => 'waiting',
+            'pengiriman' => 'menunggu'
         ]);
 
         return redirect()->route('admin.transaction')->with('success', 'Transaction created!');
@@ -255,6 +257,54 @@ class TransactionController extends Controller
               ]);
    
               return redirect()->route('admin.transaction')->with('success', 'Status Updated');   
+        }
+    }
+
+    public function editPengiriman(String $id)
+    {
+        $pengiriman = Transaction::findOrFail($id);
+        $transactions = Transaction::all();
+        $chartData = [];
+        foreach ($transactions as $transaction) {
+            $date = Carbon::parse($transaction->created_at)->format('d/m');
+            if(isset($chartData[$date])) {
+                $chartData[$date] += $transaction->total;
+            } else {
+                $chartData[$date] = $transaction->total;
+            }
+        }
+        return view('backend.pages.Pengiriman.edit', compact('pengiriman', 'chartData'));
+    }
+
+    public function updatePengiriman(Request $request, String $id)
+    {
+        $pengiriman = Transaction::findOrFail($id);
+
+        if($request->has('btnkirim')) {
+           $pengiriman->update([
+             'cust_name' => $request->custName,
+             'noHp' => $request->noHp,
+             'alamat' => $request->alamat,
+             'alamat_detail' => $request->detailAlamat,
+             'qty'  => $request->qty,
+             'pengiriman' => 'dikirim',
+             'total'  => $request->total
+        ]);
+
+        return redirect()->route('admin.transaction')->with('success', 'OTW!');
+
+        } else if($request->has('btnbatal')){
+            $pengiriman->update([
+                'cust_name' => $request->custName,
+                'noHp' => $request->noHp,
+                'alamat' => $request->alamat,
+                'alamat_detail' => $request->detailAlamat,
+                'qty'  => $request->qty,
+                'pengiriman' => 'batal',
+                'total'  => $request->total
+            ]);
+
+            return redirect()->route('admin.transaction')->with('success', 'Gajadi Otw!');   
         }
     }
 

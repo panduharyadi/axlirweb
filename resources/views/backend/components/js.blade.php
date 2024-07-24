@@ -6,6 +6,8 @@
   <script src="{{ asset('backend/libs/simplebar/dist/simplebar.js') }}"></script>
   <script src="{{ asset('backend/js/dashboard.js') }}"></script>
   <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+  <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   {{-- script --}}
   <script>
@@ -41,7 +43,7 @@
               document.getElementById('kota').innerHTML = tampung;
           });
   });
-</script>
+</>
 
 {{-- Kecamatan --}}
 <script>

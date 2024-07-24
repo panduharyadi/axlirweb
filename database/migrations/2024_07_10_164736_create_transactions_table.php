@@ -23,6 +23,7 @@ return new class extends Migration
             $table->integer('qty');
             $table->string('directBy')->default('web');
             $table->string('status')->default('waiting');
+            $table->string('pengiriman')->default('menunggu');
             $table->integer('total');
             $table->timestamps();
         });

@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
+use session;
 use Carbon\Carbon;
 use App\Models\Slider;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session as FacadesSession;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
+use Symfony\Component\HttpFoundation\Session\Session as SessionSession;
+use Wavey\Sweetalert\Sweetalert;
 
 class SliderController extends Controller
 {
@@ -54,7 +59,8 @@ class SliderController extends Controller
             'image' => $image_path,
         ]);
 
-        return redirect()->route('admin.slider')->with('success', 'Slider created');
+        $request->session()->flash('success', 'Slider Created');
+        return redirect()->route('admin.slider');
     }
 
     public function edit(String $id)

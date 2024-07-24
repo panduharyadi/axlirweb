@@ -3,6 +3,7 @@
 @section('title', 'Add Slider')
 
 @section('content')
+
 <h5 class="card-title fw-semibold mb-4">Forms</h5>
 <div class="card">
   <div class="card-body">
@@ -16,8 +17,9 @@
         <label for="slider" class="form-label">Slider Headline</label>
         <input type="text" class="form-control" name="headline" id="slider">
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary" onclick="addSlider()">Submit</button>
     </form>
   </div>
 </div>
+
 @endsection

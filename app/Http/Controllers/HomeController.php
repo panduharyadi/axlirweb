@@ -37,7 +37,20 @@ class HomeController extends Controller
             ->groupBy('year')
             ->get();
         
-        return view("backend.pages.Dashboard", compact('montlyEarnings', 'yearEarnings', 'chartData'));
+        // total pengiriman
+        $delivered = Transaction::where('pengiriman', 'dikirim')->count();
+        $pending = Transaction::where('pengiriman', 'menunggu')->count();
+        $cancelled = Transaction::where('pengiriman', 'batal')->count();
+
+        // popular product
+        $mostProducts = Transaction::select('id_product', DB::raw('COUNT(*) as total_purchase, SUM(qty) as total_qty'))
+            ->groupBy('id_product')
+            ->orderByDesc('total_purchase')
+            ->first();
+
+        $products = Product::findOrFail($mostProducts->id_product);
+
+        return view("backend.pages.Dashboard", compact('montlyEarnings', 'yearEarnings', 'chartData', 'delivered', 'pending', 'cancelled', 'products'));
     }
 
     public function frontend()

@@ -18,7 +18,7 @@
         </div>
         <div class="form-floating mb-3">
             <textarea class="form-control" placeholder="content here" id="content" name="content" style="height: 100px"></textarea>
-            <label for="content">Comments</label>
+            <label for="content">Contents</label>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
         </form>
