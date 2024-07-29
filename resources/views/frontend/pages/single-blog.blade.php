@@ -9,6 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <title>{{ $singleBlogs->headline }}</title>
+
   </head>
   <body>
     <div class="navbar-brand align-self-center mt-2 mx-4">
@@ -19,7 +20,9 @@
     <div class="content-wrapper" style="max-width: 800px; width: 100%;">
       <h1 class="text-start fw-bold mb-5">{{ $singleBlogs->headline }}</h1>
       <img src="{{ asset($singleBlogs->image) }}" alt="" class="img-fluid mx-auto d-block mb-5">
-      <p class="fs-5">{{ strip_tags($singleBlogs->content) }}</p>
+      <div class="content fs-5">
+        {!! ($singleBlogs->content) !!}
+      </div>
     </div>
   </div>
 

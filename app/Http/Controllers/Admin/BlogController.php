@@ -61,20 +61,36 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        $file = $request->file('image');
-        $filename = sprintf('%s_%s.%s', date('Y-m-d'), md5(microtime(true)), $file->extension());
-        $image_path = $file->move('storage/blog', $filename);
+        if($request->hasFile('upload')) {
+            // upload cover
+            $file = $request->file('upload');
+            $filename = sprintf('%s_%s.%s', date('Y-m-d'), md5(microtime(true)), $file->extension());
+            $image_path = $file->move('storage/blog', $filename);
 
-        $slug = substr($request->content, 0, 50);
+            $slug = substr($request->content, 0, 50);
 
-        Blog::create([
-            'image' => $image_path,
-            'headline' => $request->headline,
-            'slug' => $slug,
-            'content' => $request->content,
-        ]);
+            Blog::create([
+                'image' => $image_path,
+                'headline' => $request->headline,
+                'slug' => $slug,
+                'content' => $request->content,
+            ]);
 
-        return redirect()->route('admin.blogs')->with('success', 'Blog Created');
+            return redirect()->route('admin.blogs')->with('success', 'Blog Created');
+        }
+    }
+
+    public function ckeditorUpload(Request $request)
+    {
+        if($request->hasFile('upload'))
+        {
+            $file = $request->file('upload');
+            $filename = sprintf('%s_%s.%s', date('Y-m-d'), md5(microtime(true)), $file->extension());
+            $file->move(public_path('uploads/ckeditor'), $filename);
+            $url = asset('uploads/ckeditor/' . $filename);
+
+            return response()->json(['uploaded' => 1, 'url' => $url]);
+        }
     }
 
     /**

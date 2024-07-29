@@ -102,6 +102,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('/admin/blogs', 'index')->name('admin.blogs');
         Route::get('/admin/blog/add', 'create')->name('admin.blog.add');
         Route::post('/admin/blog/post', 'store')->name('admin.blog.store');
+        Route::post('/admin/blog/ckeditor/upload', 'ckeditorUpload')->name('admin.blog.ckeditor.upload');
     });
 
 });

@@ -7,57 +7,19 @@
   <script src="{{ asset('backend/js/dashboard.js') }}"></script>
   <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>  
+  <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
 
-  <script type="importmap">
-    {
-        "imports": {
-            "ckeditor5": "https://cdn.ckeditor.com/ckeditor5/42.0.2/ckeditor5.js",
-            "ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/42.0.2/"
-        }
-    }
-  </script>  
-
+  {{-- ckeditor --}}
   <script type="module">
-    import {
-        ClassicEditor,
-        Essentials,
-        Bold,
-        Italic,
-        Underline,
-        Font,
-        Paragraph,
-        Image,
-        Link,
-        ImageUpload,
-        Alignment,
-        Heading,
-    } from 'ckeditor5';
-
     ClassicEditor
-        .create( document.querySelector( '#content' ), {
-            
-            plugins: [ Essentials, Bold, Italic, Font, Paragraph, Image, ImageUpload, Link, Underline, Alignment, Heading ],
-            toolbar: {
-                items: [
-                    'undo', 'redo',
-                    '|',
-                    'heading',
-                    '|',
-                    'fontfamily', 'fontsize', 
-                    '|',
-                    'alignment',
-                    '|',
-                    'bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript', 'code',
-                    '|',
-                    'link', 'image', 'uploadImage', 'blockQuote', 'codeBlock',
-                    '|',
-                    'bulletedList', 'numberedList', 'todoList', 'outdent', 'indent'
-                ],
-                shouldNotGroupWhenFull: false
-            }
-        } )
-        .then( /* ... */ )
-        .catch( /* ... */ );
+      .create(document.querySelector('#content'), {
+        ckfinder: {
+          uploadUrl: "{{ route('admin.blog.ckeditor.upload', ['_token' => csrf_token()]) }}",
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      })
   </script>
 
   {{-- script --}}
