@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use Carbon\Carbon;
+use App\Models\Blog;
 use App\Models\Transaction;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Blog;
 
 class BlogController extends Controller
 {
@@ -81,7 +82,11 @@ class BlogController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $singleBlogs = Blog::find($id);
+        if(!$singleBlogs) {
+            abort(404);
+        }
+        return view('frontend.pages.single-blog', compact('singleBlogs'));
     }
 
     /**

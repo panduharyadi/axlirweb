@@ -18,6 +18,15 @@
         display: inline-block;
         margin-right: 10px;
     }
+
+    .url-blog {
+        text-decoration: none;
+        color: black
+    }
+
+    .url-blog:hover {
+        color: #000;
+    }
 </style>
 
 @section('content')
@@ -55,14 +64,16 @@
         <div class="row mb-4 mt-4">
             @foreach ($blogs as $blog)
                 <div class="col-12 col-md-6 mb-4 mt-4">
-                    <div class="card">
-                        <img src="{{ asset($blog->image) }}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                        <h5 class="card-title">{{ $blog->headline }}</h5>
-                        <p class="card-text">{{ $blog->slug }}</p>
-                        <p class="card-text"><small class="text-muted">Read post</small><i class="ti ti-corner-right-up-double text-muted"></i></p>
+                    <a href="{{ route('user.blog.show', ['id' => $blog->id, 'slug' => Str::slug($blog->headline)]) }}" class="url-blog">
+                        <div class="card">
+                            <img src="{{ asset($blog->image) }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                            <h5 class="card-title">{{ $blog->headline }}</h5>
+                            <p class="card-text">{{ $blog->slug }}</p>
+                            <p class="card-text"><small class="text-muted">Read post</small><i class="ti ti-corner-right-up-double text-muted"></i></p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             @endforeach
         </div>

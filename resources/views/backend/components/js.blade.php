@@ -6,8 +6,59 @@
   <script src="{{ asset('backend/libs/simplebar/dist/simplebar.js') }}"></script>
   <script src="{{ asset('backend/js/dashboard.js') }}"></script>
   <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
-  <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>  
+
+  <script type="importmap">
+    {
+        "imports": {
+            "ckeditor5": "https://cdn.ckeditor.com/ckeditor5/42.0.2/ckeditor5.js",
+            "ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/42.0.2/"
+        }
+    }
+  </script>  
+
+  <script type="module">
+    import {
+        ClassicEditor,
+        Essentials,
+        Bold,
+        Italic,
+        Underline,
+        Font,
+        Paragraph,
+        Image,
+        Link,
+        ImageUpload,
+        Alignment,
+        Heading,
+    } from 'ckeditor5';
+
+    ClassicEditor
+        .create( document.querySelector( '#content' ), {
+            
+            plugins: [ Essentials, Bold, Italic, Font, Paragraph, Image, ImageUpload, Link, Underline, Alignment, Heading ],
+            toolbar: {
+                items: [
+                    'undo', 'redo',
+                    '|',
+                    'heading',
+                    '|',
+                    'fontfamily', 'fontsize', 
+                    '|',
+                    'alignment',
+                    '|',
+                    'bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript', 'code',
+                    '|',
+                    'link', 'image', 'uploadImage', 'blockQuote', 'codeBlock',
+                    '|',
+                    'bulletedList', 'numberedList', 'todoList', 'outdent', 'indent'
+                ],
+                shouldNotGroupWhenFull: false
+            }
+        } )
+        .then( /* ... */ )
+        .catch( /* ... */ );
+  </script>
 
   {{-- script --}}
   <script>

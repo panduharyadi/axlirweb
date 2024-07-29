@@ -726,6 +726,11 @@
                             <input type="number" class="form-control" id="qty" name="qty">
                         </div>
 
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="text" class="form-control" id="email" name="email">
+                        </div>
+
                         <div class="form-floating mb-3">
                             <textarea class="form-control" placeholder="Berikan alamat lengkap seperti : No rumah, nama jalan, kode pos dll."
                                 id="address" name="detailAlamat"></textarea>

@@ -9,10 +9,7 @@
 <section class="container py-5">
     <div class="row text-center pt-3">
         <div class="col-lg-6 m-auto">
-            <h1 class="h1">Temukan Parfume Terbaikmu</h1>
-            <p>
-                Kenali karakteristik yang cocok untukmu dari parfume axlir
-            </p>
+            <h4 class="h1"><b>Kenali karakteristik dari parfume kami</b></h4>
         </div>
     </div>
     {{-- <div class="row">
@@ -46,10 +43,9 @@
     <div class="container py-5">
         <div class="row text-center py-3">
             <div class="col-lg-6 m-auto">
-                <h1 class="h1">Featured Product</h1>
+                <h1 class="h1"><b>Koleksi Parfum Kami</b></h1>
                 <p>
-                    Reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                    Excepteur sint occaecat cupidatat non proident.
+                    Temukan aroma yang mencerminkan kepribadian anda.
                 </p>
             </div>
         </div>

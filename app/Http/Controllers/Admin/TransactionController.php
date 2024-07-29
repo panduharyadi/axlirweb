@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use Carbon\Carbon;
+use App\Mail\SendEmail;
 use App\Models\Product;
 use App\Models\Provinsi;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+use App\Notifications\TransactionNotifSuccess;
 
 class TransactionController extends Controller
 {
@@ -69,6 +72,7 @@ class TransactionController extends Controller
         $transactions = Transaction::create([
             'id_product' => $request->idProduct,
             'cust_name'  => $request->custName,
+            'email'      => $request->email,
             'noHp'       => $noHp,
             'alamat'     => $alamat,
             'alamat_detail' => $request->detailAlamat,
@@ -80,6 +84,13 @@ class TransactionController extends Controller
             'status'     => 'waiting',
             'pengiriman' => 'menunggu'
         ]);
+
+        $data = [
+            'subject' => 'Terimakasih orang baik',
+            'content' => 'content terimakasih orang baik'
+        ];
+
+        Mail::to($request->email)->send(new SendEmail($data));
 
         return redirect()->back();
     }

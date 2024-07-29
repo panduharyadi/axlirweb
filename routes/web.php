@@ -35,6 +35,7 @@ Route::get('/main-accords', function() {
 
 Route::controller(BlogController::class)->group(function () {
     Route::get('/user/blog', 'feBlog')->name('user.blog.list');
+    Route::get('/user/blog/{id}/{slug}', 'show')->name('user.blog.show');
 });
 
 
