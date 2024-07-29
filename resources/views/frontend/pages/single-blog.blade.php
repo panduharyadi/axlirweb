@@ -11,9 +11,17 @@
     <title>{{ $singleBlogs->headline }}</title>
   </head>
   <body>
-    <div class="container mt-4">
-        <h1>{{ $singleBlogs->headline }}</h1>
+    <div class="navbar-brand align-self-center mt-2 mx-4">
+      <img src="{{ asset('frontend/img/logo/logo_axlir.png') }}" alt="" width="120" srcset="">
+   </div>
+
+   <div class="container mt-5 d-flex justify-content-center">
+    <div class="content-wrapper" style="max-width: 800px; width: 100%;">
+      <h1 class="text-start fw-bold mb-5">{{ $singleBlogs->headline }}</h1>
+      <img src="{{ asset($singleBlogs->image) }}" alt="" class="img-fluid mx-auto d-block mb-5">
+      <p class="fs-5">{{ strip_tags($singleBlogs->content) }}</p>
     </div>
+  </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
 

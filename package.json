@@ -19,6 +19,7 @@
         "@tabler/icons": "^3.9.0",
         "ckeditor5": "^42.0.2",
         "lightbox2": "^2.11.4",
+        "sweetalert": "^2.1.2",
         "sweetalert2": "^11.12.3"
     }
 }
