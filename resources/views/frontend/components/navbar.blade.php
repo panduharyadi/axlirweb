@@ -16,13 +16,13 @@
                         <a class="nav-link" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
+                        <a class="nav-link" href="{{ route('user.about') }}">About</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('user.blog.list') }}">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
+                        <a class="nav-link" href="{{ route('user.contact') }}">Contact</a>
                     </li>
                 </ul>
             </div>

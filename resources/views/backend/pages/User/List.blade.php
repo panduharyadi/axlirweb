@@ -11,8 +11,7 @@
             <tr>
                 <th>Customer Name</th>
                 <th>No hp</th>
-                <th>Produk</th>
-                <th>total</th>
+                <th>Email</th>
             </tr>   
         </thead>
         <tbody>
@@ -20,8 +19,7 @@
                 <tr>
                     <td>{{ $user->cust_name }}</td>
                     <td>{{ $user->noHp }}</td>
-                    <td>{{ $user->product_name }}</td>
-                    <td>{{ $user->total }}</td>
+                    <td>{{ $user->email }}</td>
                 </tr>
             @endforeach
         </tbody>

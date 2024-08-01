@@ -34,8 +34,9 @@ class BlogController extends Controller
     // show blog yang di user
     public function feBlog()
     {
-        $blogs = Blog::all();
-        return view('frontend.pages.blog', compact('blogs'));
+        $today = Carbon::now()->toDateString();
+        $blogUser = Blog::where('created_at', $today)->get();
+        return view('frontend.pages.blog', compact('blogUser'));
     }
 
     /**
@@ -74,6 +75,8 @@ class BlogController extends Controller
                 'headline' => $request->headline,
                 'slug' => $slug,
                 'content' => $request->content,
+                'meta' => $request->meta,
+                'created_at' => $request->jadwal
             ]);
 
             return redirect()->route('admin.blogs')->with('success', 'Blog Created');
@@ -126,6 +129,9 @@ class BlogController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $blogs = Blog::find($id);
+        $blogs->delete();
+
+        return redirect()->back();
     }
 }

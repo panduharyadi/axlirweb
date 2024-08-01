@@ -1,9 +1,8 @@
 <footer class="bg-dark" id="tempaltemo_footer">
     <div class="container">
         <div class="row">
-
             <div class="col-md-4 pt-5">
-                <h2 class="h2 text-success border-bottom pb-3 border-light logo">Zay Shop</h2>
+                <h2 class="h2 text-success border-bottom pb-3 border-light logo">Axlir Parfum</h2>
                 <ul class="list-unstyled text-light footer-link-list">
                     <li>
                         <i class="fas fa-map-marker-alt fa-fw"></i>
@@ -23,13 +22,11 @@
             <div class="col-md-4 pt-5">
                 <h2 class="h2 text-light border-bottom pb-3 border-light">Products</h2>
                 <ul class="list-unstyled text-light footer-link-list">
-                    <li><a class="text-decoration-none" href="#">Luxury</a></li>
-                    <li><a class="text-decoration-none" href="#">Sport Wear</a></li>
-                    <li><a class="text-decoration-none" href="#">Men's Shoes</a></li>
-                    <li><a class="text-decoration-none" href="#">Women's Shoes</a></li>
-                    <li><a class="text-decoration-none" href="#">Popular Dress</a></li>
-                    <li><a class="text-decoration-none" href="#">Gym Accessories</a></li>
-                    <li><a class="text-decoration-none" href="#">Sport Shoes</a></li>
+                    <li><a class="text-decoration-none" href="#">Bcarat</a></li>
+                    <li><a class="text-decoration-none" href="#">Black Op</a></li>
+                    <li><a class="text-decoration-none" href="#">Dun Hill Blue</a></li>
+                    <li><a class="text-decoration-none" href="#">Scandal Us</a></li>
+                    <li><a class="text-decoration-none" href="#">Roman Wiss</a></li>
                 </ul>
             </div>
 
@@ -38,8 +35,7 @@
                 <ul class="list-unstyled text-light footer-link-list">
                     <li><a class="text-decoration-none" href="#">Home</a></li>
                     <li><a class="text-decoration-none" href="#">About Us</a></li>
-                    <li><a class="text-decoration-none" href="#">Shop Locations</a></li>
-                    <li><a class="text-decoration-none" href="#">FAQs</a></li>
+                    <li><a class="text-decoration-none" href="#">Blog</a></li>
                     <li><a class="text-decoration-none" href="#">Contact</a></li>
                 </ul>
             </div>
@@ -81,8 +77,7 @@
             <div class="row pt-2">
                 <div class="col-12">
                     <p class="text-left text-light">
-                        Copyright &copy; 2021 Company Name 
-                        | Designed by <a rel="sponsored" href="https://templatemo.com" target="_blank">TemplateMo</a>
+                        Copyright &copy; 2024 Company Name 
                     </p>
                 </div>
             </div>

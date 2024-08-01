@@ -74,7 +74,6 @@
                             <p class="card-text">
                                 {{ $product->description }}
                             </p>
-                            <p class="text-muted">Reviews (24)</p>
                         </div>
                     </div>
                 </div>

@@ -78,8 +78,18 @@ class ProductController extends Controller
 
     public function edit(String $id)
     {
+        $transactions = Transaction::all();
+        $chartData = [];
+        foreach ($transactions as $transaction) {
+            $date = Carbon::parse($transaction->created_at)->format('d/m');
+            if(isset($chartData[$date])) {
+                $chartData[$date] += $transaction->total;
+            } else {
+                $chartData[$date] = $transaction->total;
+            }
+        }
         $products = Product::findOrFail($id);
-        return view('backend.pages.Product.edit', compact('products'));
+        return view('backend.pages.Product.edit', compact('products', 'chartData'));
     }
 
     public function update(Request $request, $id)

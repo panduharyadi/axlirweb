@@ -62,14 +62,18 @@
         <hr class="mb-3">
 
         <div class="row mb-4 mt-4">
-            @foreach ($blogs as $blog)
+            @foreach ($blogUser as $blog)
                 <div class="col-12 col-md-6 mb-4 mt-4">
                     <a href="{{ route('user.blog.show', ['id' => $blog->id, 'slug' => Str::slug($blog->headline)]) }}" class="url-blog">
                         <div class="card">
                             <img src="{{ asset($blog->image) }}" class="card-img-top" alt="...">
                             <div class="card-body">
                             <h5 class="card-title">{{ $blog->headline }}</h5>
-                            <p class="card-text">{{ $blog->slug }}</p>
+                            <p class="card-text">{!! $blog->slug !!}</p>
+                            <span class="fw-100 card-text text-gray-300 mt-4">
+                                <i class="ti ti-calendar-time"></i>
+                                {{ date('d-M-y', strtotime($blog->created_at)) }}
+                            </span>
                             <p class="card-text"><small class="text-muted">Read post</small><i class="ti ti-corner-right-up-double text-muted"></i></p>
                             </div>
                         </div>

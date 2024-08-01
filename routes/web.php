@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\StockController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\TransactionController;
+use App\Http\Controllers\User\AboutController;
+use App\Http\Controllers\User\ContactController;
 use App\Http\Controllers\User\ProductController as UserProductController;
 
 Route::get('/', [HomeController::class, 'frontend'])->name('home');
@@ -31,6 +33,15 @@ Route::controller(UserProductController::class)->group(function () {
 
 Route::get('/main-accords', function() {
     return view('frontend.pages.mainAccords');
+});
+
+Route::controller(AboutController::class)->group(function () {
+    Route::get('/about', 'index')->name('user.about');
+});
+
+Route::controller(ContactController::class)->group(function() {
+    Route::get('/contact', 'index')->name('user.contact');
+    Route::post('/user/contact/complaint', 'complaints')->name('user.complaint');
 });
 
 Route::controller(BlogController::class)->group(function () {
@@ -103,6 +114,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('/admin/blog/add', 'create')->name('admin.blog.add');
         Route::post('/admin/blog/post', 'store')->name('admin.blog.store');
         Route::post('/admin/blog/ckeditor/upload', 'ckeditorUpload')->name('admin.blog.ckeditor.upload');
+        Route::delete('{id}/admin/blog/delete', 'destroy')->name('admin.blog.delete');
     });
 
 });

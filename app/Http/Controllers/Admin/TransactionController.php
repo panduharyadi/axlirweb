@@ -9,6 +9,7 @@ use App\Models\Provinsi;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\ProductFile;
 use Illuminate\Support\Facades\Mail;
 use App\Notifications\TransactionNotifSuccess;
 
@@ -86,8 +87,12 @@ class TransactionController extends Controller
         ]);
 
         $data = [
-            'subject' => 'Terimakasih orang baik',
-            'content' => 'content terimakasih orang baik'
+            'subject' => 'Transaksi Berhasil. Dengan transaksi berikut',
+            'content' => 'content terimakasih orang baik',
+            'pemesan' => $request->custName,
+            'pesanan' => $product->product_name,
+            'ukuran'  => $product->size,
+            'harga'   => $product->price
         ];
 
         Mail::to($request->email)->send(new SendEmail($data));
@@ -236,6 +241,7 @@ class TransactionController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        
         $confirms = Transaction::findOrFail($id);
 
         if($request->has('btnaccept')) {

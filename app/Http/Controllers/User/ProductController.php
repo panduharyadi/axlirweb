@@ -18,19 +18,12 @@ class ProductController extends Controller
 
         $provinces = Http::get('https://kanglerian.github.io/api-wilayah-indonesia/api/provinces.json')->json();
 
-        // inisialisasi array buat simpen data kota
-        // $citys = [];
-        
-        // foreach ($provinces as $province) {
-        //     $provinceId = $province['id'];
-        //     $cityData = Http::get("https://kanglerian.github.io/api-wilayah-indonesia/api/regencies/$provinceId.json")->json();
-        //     $citys[$provinceId] = $cityData;
-        // }
-
         $productFile = ProductFile::select('*')
             ->where('product_id', $id)
             ->get();
 
-        return view('frontend.pages.ProductDetail', compact(['products', 'provinces', 'productFile']));
+        $relatedProduct = Product::all();
+
+        return view('frontend.pages.ProductDetail', compact(['products', 'provinces', 'productFile', 'relatedProduct']));
     }
 }

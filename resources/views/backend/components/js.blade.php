@@ -15,6 +15,7 @@
       .create(document.querySelector('#content'), {
         ckfinder: {
           uploadUrl: "{{ route('admin.blog.ckeditor.upload', ['_token' => csrf_token()]) }}",
+          Imageresize: "",
         }
       })
       .catch(error => {
@@ -56,7 +57,7 @@
               document.getElementById('kota').innerHTML = tampung;
           });
   });
-</>
+</script>
 
 {{-- Kecamatan --}}
 <script>
