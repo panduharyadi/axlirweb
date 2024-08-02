@@ -10,4 +10,5 @@ class Blog extends Model
     use HasFactory;
 
     protected $guarded = [];
+    
 }

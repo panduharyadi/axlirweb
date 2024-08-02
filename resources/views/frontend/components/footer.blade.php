@@ -1,3 +1,9 @@
+<style>
+    .list {
+        font-size: 14px;
+    }
+</style>
+
 <footer class="bg-dark" id="tempaltemo_footer">
     <div class="container">
         <div class="row">
@@ -22,9 +28,9 @@
             <div class="col-md-4 pt-5">
                 <h2 class="h2 text-light border-bottom pb-3 border-light">Products</h2>
                 <ul class="list-unstyled text-light footer-link-list">
-                    <li><a class="text-decoration-none" href="#">Bcarat</a></li>
-                    <li><a class="text-decoration-none" href="#">Black Op</a></li>
-                    <li><a class="text-decoration-none" href="#">Dun Hill Blue</a></li>
+                    <li class="list"><a class="text-decoration-none" href="#">Bcarat</a></li>
+                    <li class="list"><a class="text-decoration-none" href="#">Black Op</a></li>
+                    <li class="list"><a class="text-decoration-none" href="#">Dun Hill Blue</a></li>
                     <li><a class="text-decoration-none" href="#">Scandal Us</a></li>
                     <li><a class="text-decoration-none" href="#">Roman Wiss</a></li>
                 </ul>

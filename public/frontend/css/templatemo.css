@@ -31,7 +31,7 @@ Table of contents
 /* Typography */
 body, ul, li, p, a, label, input, div {
   font-family: 'Roboto', sans-serif;
-  font-size: 18px !important;
+  font-size: 15px !important;
   font-weight: 300 !important;
 }
 .h1 {
@@ -41,7 +41,7 @@ body, ul, li, p, a, label, input, div {
 }
 .h2 {
   font-family: 'Roboto', sans-serif;
-  font-size: 30px !important;
+  font-size: 25px !important;
   font-weight: 300;
 }
 .h3 {
@@ -137,7 +137,7 @@ body, ul, li, p, a, label, input, div {
 .leaflet-control a, .leaflet-control { font-size: 10px !important;}
 .form-control { border: 1px solid #e8e8e8;}
 /* Footer */
-#tempaltemo_footer a { color: #dcdde1;}
+#tempaltemo_footer a { color: #dcdde1; }
 #tempaltemo_footer a:hover { color: #68bb7d;}
 #tempaltemo_footer ul.footer-link-list li { padding-top: 10px;}
 #tempaltemo_footer ul.footer-icons li {

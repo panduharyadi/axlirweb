@@ -34,8 +34,9 @@ class BlogController extends Controller
     // show blog yang di user
     public function feBlog()
     {
-        $today = Carbon::now()->toDateString();
-        $blogUser = Blog::where('created_at', $today)->get();
+        $blogUser = Blog::whereDate('post', '>=', date('Y-m-d', strtotime('-1 day')))
+                        ->whereDate('post', '<=', date('Y-m-d'))
+                        ->get();
         return view('frontend.pages.blog', compact('blogUser'));
     }
 
@@ -76,7 +77,7 @@ class BlogController extends Controller
                 'slug' => $slug,
                 'content' => $request->content,
                 'meta' => $request->meta,
-                'created_at' => $request->jadwal
+                'post' => $request->jadwal
             ]);
 
             return redirect()->route('admin.blogs')->with('success', 'Blog Created');

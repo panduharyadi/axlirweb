@@ -72,7 +72,7 @@
                             <p class="card-text">{!! $blog->slug !!}</p>
                             <span class="fw-100 card-text text-gray-300 mt-4">
                                 <i class="ti ti-calendar-time"></i>
-                                {{ date('d-M-y', strtotime($blog->created_at)) }}
+                                {{ $blog->post }}
                             </span>
                             <p class="card-text"><small class="text-muted">Read post</small><i class="ti ti-corner-right-up-double text-muted"></i></p>
                             </div>

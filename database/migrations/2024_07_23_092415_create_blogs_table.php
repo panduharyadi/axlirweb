@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('slug');
             $table->text('content');
             $table->string('meta')->nullable();
+            $table->date('post');
             $table->timestamps();
         });
     }

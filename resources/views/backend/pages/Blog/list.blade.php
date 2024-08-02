@@ -22,7 +22,7 @@
                     <td><img src="{{ asset($blog->image) }}" width="80" alt=""></td>
                     <td>{{ $blog->headline }}</td>
                     <td>{!! $blog->slug !!}</td>
-                    <td>{{ date('d-M-y', strtotime($blog->created_at)) }}</td>
+                    <td>{{ $blog->post }}</td>
                     <td>
                         <form action="{{ route('admin.blog.delete', $blog->id) }}" method="post" class="mt-2">
                             @csrf
