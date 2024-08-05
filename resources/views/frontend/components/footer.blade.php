@@ -11,10 +11,6 @@
                 <h2 class="h2 text-success border-bottom pb-3 border-light logo">Axlir Parfum</h2>
                 <ul class="list-unstyled text-light footer-link-list">
                     <li>
-                        <i class="fas fa-map-marker-alt fa-fw"></i>
-                        123 Consectetur at ligula 10660
-                    </li>
-                    <li>
                         <i class="fa fa-phone fa-fw"></i>
                         <a class="text-decoration-none" href="tel:010-020-0340">010-020-0340</a>
                     </li>
