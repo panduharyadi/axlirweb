@@ -131,14 +131,21 @@
                 @php
                     $file = App\Models\ProductFile::where('product_id', $relatedP->id)->get();
                 @endphp
-                <a href="{{ route('user.product.detail', $relatedP->id) }}">
+                <a href="{{ $relatedP->stock > 0 ? route('user.product.detail', $relatedP->id) : '#' }}" style="text-decoration: none;">
                 <div class="p-2 pb-3">
-                    <div class="product-wap card rounded-0">
+                    <div class="product-wap card rounded-0 position-relative">
                         <div class="card rounded-0">
                             <img class="card-img rounded-0 img-fluid" src="{{ asset($file[0]->path_file) }}">
+                            @if($relatedP->stock == 0)
+                                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center" style="background-color: rgba(255, 255, 255, 0.7);">
+                                    <p class="text-danger fw-bold">Produk ini habis</p>
+                                </div>
+                            @endif
                         </div>
                         <div class="card-body">
-                            <a href="shop-single.html" class="h3 text-decoration-none">{{ $relatedP->product_name }}</a>
+                            <a href="{{ $relatedP->stock > 0 ? route('user.product.detail', $relatedP->id) : '#' }}" style="pointer-events: none; cursor: default; text-decoration: none;" @if($relatedP->stock > 0) style="pointer-events: auto; cursor: pointer; text-decoration: none;" @endif>
+                                <h3 class="h3 text-decoration-none">{{ $relatedP->product_name }}</h3>
+                            </a>
                             <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
                                 <li>{{ $relatedP->size }}</li>
                                 <li class="pt-2">

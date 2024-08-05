@@ -42,15 +42,19 @@ class HomeController extends Controller
         $pending = Transaction::where('pengiriman', 'menunggu')->count();
         $cancelled = Transaction::where('pengiriman', 'batal')->count();
 
-        // popular product
-        $mostProducts = Transaction::select('id_product', DB::raw('COUNT(*) as total_purchase, SUM(qty) as total_qty'))
+        // produk terlaris
+        $mostSoldProducts = Transaction::select('id_product', DB::raw('SUM(qty) as total_qty'))
+            ->where('status', 'Accept')
             ->groupBy('id_product')
-            ->orderByDesc('total_purchase')
-            ->first();
+            ->orderByDesc('total_qty')
+            ->take(4)
+            ->get();
 
-        $products = $mostProducts ? Product::findOrFail($mostProducts->id_product) : "Data belum tersedia";
+        foreach ($mostSoldProducts as $product) {
+            $product->product = Product::find($product->id_product);
+        }
 
-        return view("backend.pages.Dashboard", compact('montlyEarnings', 'yearEarnings', 'chartData', 'delivered', 'pending', 'cancelled', 'products'));
+        return view("backend.pages.Dashboard", compact('montlyEarnings', 'yearEarnings', 'chartData', 'delivered', 'pending', 'cancelled', 'mostSoldProducts'));
     }
 
     public function frontend()

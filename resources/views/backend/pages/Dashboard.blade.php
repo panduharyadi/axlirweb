@@ -12,11 +12,6 @@
           <div>
             <select class="form-select">
               <option value="1">Jull 2024</option>
-              <option value="2">Augs 2024</option>
-              <option value="3">Sep 2024</option>
-              <option value="4">Okt 2024</option>
-              <option value="4">Nov 2024</option>
-              <option value="4">Des 2024</option>
             </select>
           </div>
         </div>
@@ -141,33 +136,31 @@
                   <h6 class="fw-semibold mb-0">Product</h6>
                 </th>
                 <th class="border-bottom-0">
-                  <h6 class="fw-semibold mb-0">Quantity</h6>
+                  <h6 class="fw-semibold mb-0">Terjual</h6>
                 </th>
-                {{-- <th class="border-bottom-0">
-                  <h6 class="fw-semibold mb-0">Priority</h6>
-                </th> --}}
               </tr>
             </thead>
             <tbody>
-              <tr>
-                @if($products != "Data belum tersedia")
-                <td class="border-bottom-0"><h6 class="fw-semibold mb-0">1</h6></td>
-                <td class="border-bottom-0">
-                    <h6 class="fw-semibold mb-1">tes</h6>
-                    <span class="fw-normal">tes</span>                          
-                </td>
-                {{-- <td class="border-bottom-0">
-                  <p class="mb-0 fw-normal">{{ $products->id_product }}</p>
-                </td> --}}
-                <td class="border-bottom-0">
-                  <div class="d-flex align-items-center gap-2">
-                    <span class="badge bg-primary rounded-3 fw-semibold">Low</span>
-                  </div>
-                </td>
-                @else
-                  <p>{{ $products }}</p>
-                @endif            
-              </tr>
+              @if ($mostSoldProducts->isEmpty())
+                  <span class="fs-14 fw-200 text-center">
+                    Data Belum Tersedia
+                  </span>
+              @else
+                @foreach ($mostSoldProducts as $index => $product)
+                  <tr>
+                    <td class="border-bottom-0"><h6 class="fw-semibold mb-0">{{ $index + 1 }}</h6></td>
+                    <td class="border-bottom-0">
+                        <h6 class="fw-semibold mb-1">{{ $product->product->product_name }}</h6>
+                        <span class="fw-normal">{{ $product->product->size }}</span>                          
+                    </td>
+                    <td class="border-bottom-0">
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="badge bg-primary rounded-3 fw-semibold">{{ $product->total_qty }}</span>
+                      </div>
+                    </td>
+                  </tr>
+                @endforeach
+              @endif
             </tbody>
           </table>
         </div>
