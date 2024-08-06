@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light shadow">
     <div class="container d-flex justify-content-between align-items-center">
 
-        <a class="navbar-brand text-success logo h1 align-self-center" href="index.html">
-            <img src="{{ asset('frontend/img/logo/logo_axlir.png') }}" alt="" width="120" srcset="">
+        <a class="navbar-brand logo h1" href="/">
+            <img src="{{ asset('frontend/img/logo/logo-dmain.svg') }}" alt="" width="200" srcset="">
         </a>
 
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

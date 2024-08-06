@@ -8,41 +8,41 @@
     <div class="row">
         <div class="col-12 col-md-6 col-lg-4 mb-3 mt-4">
             <div class="card">
-                <img src="{{ asset('frontend/img/Accords/accords1.jpg') }}" class="card-img-top" alt="" data-lightbox="bcarat">
+                <img src="{{ asset('frontend/img/Accords/dmainAccord1.jpg') }}" class="card-img-top" alt="" data-lightbox="bcarat">
                 <div class="card-body">
-                    <h5 class="card-title">Bcarat</h5>
+                    <h5 class="card-title">Cumbana</h5>
                 </div>
             </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4 mb-3 mt-4">
             <div class="card">
-                <img src="{{ asset('frontend/img/Accords/accords2.jpg') }}" class="card-img-top" alt="">
+                <img src="{{ asset('frontend/img/Accords/dmainAccord2.jpg') }}" class="card-img-top" alt="">
                 <div class="card-body">
-                    <h5 class="card-title">Dun hill blue</h5>
+                    <h5 class="card-title">Denira</h5>
                 </div>
             </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4 mb-3 mt-4">
             <div class="card">
-                <img src="{{ asset('frontend/img/Accords/accords3.jpg') }}" class="card-img-top" alt="">
+                <img src="{{ asset('frontend/img/Accords/dmainAccord3.jpg') }}" class="card-img-top" alt="">
                 <div class="card-body">
-                    <h5 class="card-title">Black Op</h5>
+                    <h5 class="card-title">Piniluta</h5>
                 </div>
             </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4 mb-3 mt-4">
             <div class="card">
-                <img src="{{ asset('frontend/img/Accords/accords4.jpg') }}" class="card-img-top" alt="">
+                <img src="{{ asset('frontend/img/Accords/dmainAccord4.jpg') }}" class="card-img-top" alt="">
                 <div class="card-body">
-                    <h5 class="card-title">Scandal Us</h5>
+                    <h5 class="card-title">Akalpa</h5>
                 </div>
             </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4 mb-3 mt-4">
             <div class="card">
-                <img src="{{ asset('frontend/img/Accords/accords5.jpg') }}" class="card-img-top" alt="">
+                <img src="{{ asset('frontend/img/Accords/dmainAccord5.jpg') }}" class="card-img-top" alt="">
                 <div class="card-body">
-                    <h5 class="card-title">Roma wis</h5>
+                    <h5 class="card-title">Bilahi</h5>
                 </div>
             </div>
         </div>

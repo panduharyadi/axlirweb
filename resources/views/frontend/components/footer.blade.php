@@ -8,7 +8,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 pt-5">
-                <h2 class="h2 text-success border-bottom pb-3 border-light logo">Axlir Parfum</h2>
+                <h2 class="h2 text-success border-bottom pb-3 border-light logo">
+                    <img src="{{ asset('frontend/img/logo/logo-dmain.svg') }}" alt="" width="200" srcset="">
+                </h2>
                 <ul class="list-unstyled text-light footer-link-list">
                     <li>
                         <i class="fa fa-phone fa-fw"></i>
@@ -24,11 +26,11 @@
             <div class="col-md-4 pt-5">
                 <h2 class="h2 text-light border-bottom pb-3 border-light">Products</h2>
                 <ul class="list-unstyled text-light footer-link-list">
-                    <li class="list"><a class="text-decoration-none" href="#">Bcarat</a></li>
-                    <li class="list"><a class="text-decoration-none" href="#">Black Op</a></li>
-                    <li class="list"><a class="text-decoration-none" href="#">Dun Hill Blue</a></li>
-                    <li><a class="text-decoration-none" href="#">Scandal Us</a></li>
-                    <li><a class="text-decoration-none" href="#">Roman Wiss</a></li>
+                    <li class="list"><a class="text-decoration-none" href="#">Cumbana</a></li>
+                    <li class="list"><a class="text-decoration-none" href="#">Denira</a></li>
+                    <li class="list"><a class="text-decoration-none" href="#">Piniluta</a></li>
+                    <li><a class="text-decoration-none" href="#">Akalpa</a></li>
+                    <li><a class="text-decoration-none" href="#">Bilahi</a></li>
                 </ul>
             </div>
 
@@ -64,13 +66,13 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-auto">
+            {{-- <div class="col-auto">
                 <label class="sr-only" for="subscribeEmail">Email address</label>
                 <div class="input-group mb-2">
                     <input type="text" class="form-control bg-dark border-light" id="subscribeEmail" placeholder="Email address">
                     <div class="input-group-text btn-success text-light">Subscribe</div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 
@@ -79,7 +81,7 @@
             <div class="row pt-2">
                 <div class="col-12">
                     <p class="text-left text-light">
-                        Copyright &copy; 2024 Company Name 
+                        Copyright &copy; 2024 D'Main 
                     </p>
                 </div>
             </div>

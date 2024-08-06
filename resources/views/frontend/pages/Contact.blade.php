@@ -4,7 +4,7 @@
 
 @section('content')
      <!-- Start Content Page -->
-     <div class="container-fluid bg-light py-5">
+     <div class="container-fluid bg-light py-5" style="background: #9BB1C1;">
         <div class="col-md-6 m-auto text-center">
             <h1 class="h1"><b>Hubungi Kami</b></h1>
             <p class="fw-400"> 
@@ -39,7 +39,7 @@
                 </div>
                 <div class="row">
                     <div class="col text-end mt-2">
-                        <button type="submit" class="btn btn-success btn-lg px-3">Kirim</button>
+                        <button type="submit" class="btn btn-lg px-3" style="background: #9BB1C1; color: white;">Kirim</button>
                     </div>
                 </div>
             </form>

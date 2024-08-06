@@ -5,6 +5,7 @@
 <style>
     #input-search, #basic-addon2 {
         border-radius: 30px;
+        border-color: #9BB1C1;
     }
 
     .ul-blog {
@@ -27,13 +28,17 @@
     .url-blog:hover {
         color: #000;
     }
+
+    .judul-blog {
+        color: #9BB1C1;
+    }
 </style>
 
 @section('content')
     <div class="container mt-4">
         <div class="row">
             <div class="col-12 col-md-6">
-                <h2>Axlir Blog</h2>
+                <h2 class="judul-blog">D'Main Blog</h2>
                 <div class="search">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" id="input-search" aria-describedby="basic-addon2">
@@ -59,7 +64,7 @@
             <li class="li-blog">Fashion</li>
         </ul>
 
-        <hr class="mb-3">
+        <hr class="mb-3" style="color: #9BB1C1;">
 
         <div class="row mb-4 mt-4">
             @foreach ($blogUser as $blog)
