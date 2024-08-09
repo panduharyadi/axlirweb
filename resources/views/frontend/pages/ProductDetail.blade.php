@@ -81,7 +81,7 @@
                                     <h6>Brand:</h6>
                                 </li>
                                 <li class="list-inline-item">
-                                    <p class="text-muted"><strong>Axlir Parfume</strong></p>
+                                    <p class="text-muted"><strong>Dmain Parfume</strong></p>
                                 </li>
                             </ul>
 
@@ -95,7 +95,7 @@
                                 </li>
                                 <li class="list-inline-item">
                                     {{-- <p class="text-muted"><strong>50ml / 30ml</strong></p> --}}
-                                    <span class="btn btn-success btn-size">{{ $products->size }}</span>
+                                    <span class="btn btn-size" style="background: #9BB1C1; color: white; border: #9BB1C1;">{{ $products->size }}</span>
                                 </li>
                             </ul>
 
@@ -105,8 +105,10 @@
                                 </div>
                                 <div class="row pb-3">
                                     <div class="col d-grid">
-                                        <button type="button" class="btn btn-success btn-lg" value="buy"
-                                            data-bs-toggle="modal" data-bs-target="#modalCheckout">Buy</button>
+                                        <button type="button" class="btn btn-lg" value="buy"
+                                            data-bs-toggle="modal" data-bs-target="#modalCheckout" style="background: #9BB1C1; color: white;">
+                                            Buy
+                                        </button>
                                     </div>
                                 </div>
                             </form>
@@ -241,12 +243,6 @@
                         </div>
 
                         <div class="mb-3">
-                            {{-- <label for="size">Size</label>
-                            <select class="form-select mb-3" aria-label="Default select example" id="size" name="size">
-                                <option selected disabled>Pilih Size</option>
-                                <option value="50ml">50ml</option>
-                                <option value="30ml">30ml</option>
-                            </select> --}}
                             <input type="hidden" name="size" value="{{ $products->size }}" />
                         </div>
 

@@ -10,8 +10,8 @@
     @csrf
     @method('put')
       <div class="mb-3">
-        <label for="formFile" class="form-label">Product Image</label>
-        <input class="form-control" type="file" name="image" id="formFile" value="{{ $products->image }}">
+        <label for="formFile" class="form-label">Product File</label>
+        <input class="form-control" type="file" name="file[]" id="formFile" multiple />
       </div>
       <div class="mb-3">
         <label for="product_name" class="form-label">Product Name</label>

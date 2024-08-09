@@ -11,7 +11,7 @@
           </div>
           <div>
             <select class="form-select">
-              <option value="1">Jull 2024</option>
+              <option value="1">{{ \Carbon\Carbon::now()->format('Y-m') }}</option>
             </select>
           </div>
         </div>
@@ -146,12 +146,16 @@
                     Data Belum Tersedia
                   </span>
               @else
-                @foreach ($mostSoldProducts as $index => $product)
+                @foreach ($mostSoldProducts as $product)
                   <tr>
-                    <td class="border-bottom-0"><h6 class="fw-semibold mb-0">{{ $index + 1 }}</h6></td>
+                    <td class="border-bottom-0"><h6 class="fw-semibold mb-0">1</h6></td>
                     <td class="border-bottom-0">
+                      @if ($product->product)
                         <h6 class="fw-semibold mb-1">{{ $product->product->product_name }}</h6>
-                        <span class="fw-normal">{{ $product->product->size }}</span>                          
+                        <span class="fw-normal">{{ $product->product->size }}</span>
+                      @else
+                        <span class="fw-semibold mb-1">Product not available</span>
+                      @endif                          
                     </td>
                     <td class="border-bottom-0">
                       <div class="d-flex align-items-center gap-2">

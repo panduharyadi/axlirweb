@@ -100,17 +100,34 @@ class ProductController extends Controller
         // check kalo gambarnya udah ada
         if ($request->hasFile('image')) {
             // upload gambar baru
-            // $image = $request->file('image');
-            $file = $request->file('image');
-            $filename = sprintf('%s_%s.%s', date('Y-m-d'), md5(microtime(true)), $file->extension());
-            $image_path = $file->move('storage/product', $filename);
+            // $file = $request->file('image');
+            // $filename = sprintf('%s_%s.%s', date('Y-m-d'), md5(microtime(true)), $file->extension());
+            // $image_path = $file->move('storage/product', $filename);
+
+            $allowedExtension = ['jpg', 'jpeg', 'png', 'webp', '3gp', 'mp4', 'mkv', 'mov'];
+            $files = $request->file('file');
+
+            foreach ($files as $file) {
+                $filename = sprintf('%s_%s.%s', date('Y-m-d'), md5(microtime(true)), $file->extension());
+                $extension = $file->getClientOriginalExtension();
+                $check = in_array($extension, $allowedExtension);
+               
+                if ($check) {
+                    $image_path = $file->move('storage/product', $filename);
+                    
+                    $productFile = ProductFile::create([
+                        'product_id'        => $products->id,
+                        'path_file'         => $image_path
+                    ]);
+                }
+            }
 
             // delete gambar lama
             Storage::delete('storage/product' . $products->image);
 
-            // update slider dengan gambar baru
+            // update product dengan gambar baru
             $products->update([
-                'image' => $image_path,
+                'image' => $productFile,
                 'product_name' => $request->productName,
                 'description' => $request->description,
                 'size' => $request->size,
@@ -118,7 +135,7 @@ class ProductController extends Controller
                 'price' => $request->price,
             ]);
         } else {
-            // update slider tanpa gambar
+            // update product tanpa gambar
             $products->update([
                 'product_name' => $request->productName,
                 'description' => $request->description,
